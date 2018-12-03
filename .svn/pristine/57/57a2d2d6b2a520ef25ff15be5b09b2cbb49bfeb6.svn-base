@@ -1,0 +1,237 @@
+/* pages/user/contact.wxss */
+page{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.page {
+  font-family: '微软雅黑';
+  position: relative;
+  height: 100%;
+}
+.me{
+  height: 100%;
+}
+.userinfo{
+  position: relative;
+  color: #4b4b4b;
+  height: 448rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.userinfo-bg{ 
+  position: absolute;
+  z-index: 1; 
+  width: 100%; 
+  height: 100%; 
+  }
+.userinfo-bg-b{
+  position: absolute;
+  bottom: 0;
+  height: 30%;
+  background: rgba(255,255,255,0.08);
+  z-index: 2;
+  width: 90%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  font-size: 42rpx;
+  color: #fff;
+  justify-content: center;
+}
+.userinfo-bg-b1{
+  position: absolute;
+  bottom: 0;
+  height: 30%;
+  z-index: 3;
+  width: 90%;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userinfo-head{
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin-top:9%;
+
+}
+.userinfo-avatar {
+  display: block;
+  width: 165rpx;
+  height: 165rpx;
+  border-radius: 100rpx;
+  background: #eaeaea;
+  position:  relative;
+  overflow: hidden;
+}
+.userinfo-avatar-bg{
+  width: 165rpx;
+  height: 165rpx;
+  display: block;
+}
+.userinfo-txt1{
+  display: flex;
+  align-content: center;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+}
+.userinfo-txt2{
+  display: block;
+  background: #b28147;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 20px;
+  padding: 0 3%;
+  text-align: center;
+  color: #fff;
+}
+.userinfo-txt3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+.userinfo-txt4{
+  width: 90%;
+  padding:0 5%;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+
+.userinfo-img1{
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  position: absolute;
+  right:50rpx;
+  top: 50rpx;
+  
+}
+.userinfo-nickname {
+  color: #fff;
+  font-size: 14px;
+}
+
+.sc{
+  background: #fff;
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666;
+}
+.qbdd_info{
+  background: #fff;
+  width: auto;
+  font-size: 12px;
+  color: #666;
+  padding: 0% 7%;
+  height: 85rpx;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.icon1{
+  font-size: 44px;
+  display:block;
+  align-items: center;
+}
+
+.df_1 view{
+  position: relative;
+}
+.tag{
+ width: 15px;
+ height: 15px;
+ background: #c32620;
+ text-align: center;
+ font-size: 10px;
+ color: #fff;
+ line-height: 15px;
+ position: absolute;
+ top: 0;
+ z-index: 23;
+ border-radius: 10px;
+}
+.w_s{
+  white-space: nowrap;
+}
+.add_group{
+  height: 20%;
+  width: 90%;
+  padding: 5%;
+  background: #fff;
+  position: relative;
+}
+.add_txt{
+  position: absolute;
+  color: #9d9d9d;
+  right: 5%;
+  bottom: 5%;
+  font-size: 12px;
+}
+.info_txt_1{
+  color: #7b7b7b;
+  font-size: 12px;
+  margin: 0;
+  padding:2% 5%;
+  display: flex;
+  align-items: center;
+}
+
+.add_group textarea{
+  color: #4b4b4b;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+}
+.add_group_p{
+  color: #9d9d9d;
+  font-size: 12px;
+}
+.user_info_bg{
+  overflow: hidden;
+  position: relative;
+}
+
+
+.login{
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  background: #4b4b4b;
+  color: #fff;
+  border-radius: 60rpx;
+  align-items: center;
+  height: 75rpx;
+  width: 80%;
+  margin: 0 auto;
+
+}
+
+.info_success{
+  width: 90%;
+  padding: 7% 5%;
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: block;
+}

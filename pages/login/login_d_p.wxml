@@ -1,0 +1,29 @@
+<!--pages/login/login_d_p.wxml-->
+<view class="page">
+<!--弹出窗-->
+<view animation="{{animationData}}" class=" buydes-dialog-container" bindtap="hideModal" wx:if="{{showModalStatus}}">
+       <view class="buydes-dialog-bg">
+          <view class='buydes-b'>
+            <icon class='iconfont icon-warning icon1 c6'></icon>
+            <text class='c6 ml15 mt10'>{{msg}}</text>
+          </view>
+       </view>
+</view>
+
+
+    <view class="userinfo">
+      <image class="userinfo-bg" src="/images/login_bg.png"></image>
+      <navigator class='password_txt' url='../index/index' open-type='switchTab' hover-class='none'>返回首页</navigator>
+		</view>
+    <view class="login_qbdd bbe">
+      <input placeholder='请输入手机号' bindinput='getPhone' placeholder-class='c9' class='w100'></input>
+    </view>
+    <view class="login_qbdd bbe mb15">
+      <input type='password' placeholder='请输入密码' bindinput='getPassword' placeholder-class='c9' class='w100'></input>
+    </view>
+    <view class='login' hover-class='none' bindtap="doLogin">立即登录</view>
+    <!-- <view class='forget'>
+      <navigator url='../index/index' open-type='switchTab' hover-class='none'>[返回首页]</navigator>    
+      <navigator url='' hover-class='none'>[忘记密码]</navigator>
+    </view> -->
+</view>

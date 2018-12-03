@@ -1,0 +1,472 @@
+// pages/user/orderlist.js
+var app = getApp();
+var common = require("../../utils/common.js");
+Page({
+  data: {
+    winWidth: 0,
+    winHeight: 0,
+    // tab切换  
+    currentTab: 0,
+    isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
+    page: 0,
+    refundpage: 0,
+    orderList0: [],
+    orderList1: [],
+    orderList2: [],
+    orderList3: [],
+    orderList4: [],
+    page: 1,
+    minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
+    total: 0,
+    carts: [],
+    showView: true,
+  },
+  onLoad: function (options) {
+    this.initSystemInfo();
+    this.setData({
+      currentTab: parseInt(options.currentTab),
+      isStatus: options.otype
+    });
+    if (this.data.currentTab == 4) {
+      this.loadReturnOrderList();
+    } else {
+      this.loadOrderList();
+    }
+    this.loadProductData();
+    this.sum();
+    //底部显示隐藏
+    showView: (options.showView == "true" ? true : false);
+  },
+  onChangeShowState: function () {
+    var that = this;
+    that.setData({
+      showView: (!that.data.showView)
+    })
+  },
+  getOrderStatus: function () {
+    return this.data.currentTab == 0 ? 1 : this.data.currentTab == 2 ? 2 : this.data.currentTab == 3 ? 3 : 0;
+  },
+
+
+  loadOrderList: function () {
+    var that = this;
+    wx.request({
+      url: app.d.ceshiUrl + '/Api/Order/index',
+      method: 'post',
+      data: {
+        uid: app.d.userId,
+        order_type: that.data.isStatus,
+        page: that.data.page,
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        //--init data        
+        var status = res.data.status;
+        var list = res.data.ord;
+        switch (that.data.currentTab) {
+          case 0:
+            that.setData({
+              orderList0: list,
+            });
+            break;
+          case 1:
+            that.setData({
+              orderList1: list,
+            });
+            break;
+          case 2:
+            that.setData({
+              orderList2: list,
+            });
+            break;
+          case 3:
+            that.setData({
+              orderList3: list,
+            });
+            break;
+          case 4:
+            that.setData({
+              orderList4: list,
+            });
+            break;
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  loadReturnOrderList: function () {
+    var that = this;
+    wx.request({
+      url: app.d.ceshiUrl + '/Api/Order/order_refund',
+      method: 'post',
+      data: {
+        uid: app.d.userId,
+        page: that.data.refundpage,
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        //--init data        
+        var data = res.data.ord;
+        var status = res.data.status;
+        if (status == 1) {
+          that.setData({
+            orderList4: that.data.orderList4.concat(data),
+          });
+        } else {
+          wx.showToast({
+            title: res.data.err,
+            duration: 2000
+          });
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  // returnProduct:function(){
+  // },
+  initSystemInfo: function () {
+    var that = this;
+
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
+  },
+  bindChange: function (e) {
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+  },
+  swichNav: function (e) {
+    var that = this;
+    if (that.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      var current = e.target.dataset.current;
+      that.setData({
+        currentTab: parseInt(current),
+        isStatus: e.target.dataset.otype,
+      });
+
+      //没有数据就进行加载
+      switch (that.data.currentTab) {
+        case 0:
+          !that.data.orderList0.length && that.loadOrderList();
+          break;
+        case 1:
+          !that.data.orderList1.length && that.loadOrderList();
+          break;
+        case 2:
+          !that.data.orderList2.length && that.loadOrderList();
+          break;
+        case 3:
+          !that.data.orderList3.length && that.loadOrderList();
+          break;
+        case 4:
+          that.data.orderList4.length = 0;
+          that.loadReturnOrderList();
+          break;
+      }
+    };
+  },
+  bindMinus: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var num = that.data.carts[index].num;
+    // 如果只有1件了，就不允许再减了
+    if (num > 1) {
+      num--;
+    }
+    console.log(num);
+    var cart_id = e.currentTarget.dataset.cartid;
+    wx.request({
+      url: app.d.ceshiUrl + '/Api/Shopping/up_cart',
+      method: 'post',
+      data: {
+        user_id: app.d.userId,
+        num: num,
+        cart_id: cart_id
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var status = res.data.status;
+        if (status == 1) {
+          // 只有大于一件的时候，才能normal状态，否则disable状态
+          var minusStatus = num <= 1 ? 'disabled' : 'normal';
+          // 购物车数据
+          var carts = that.data.carts;
+          carts[index].num = num;
+          // 按钮可用状态
+          var minusStatuses = that.data.minusStatuses;
+          minusStatuses[index] = minusStatus;
+          // 将数值与状态写回
+          that.setData({
+            minusStatuses: minusStatuses
+          });
+          that.sum();
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  bindPlus: function (e) {
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    var num = that.data.carts[index].num;
+    // 自增
+    num++;
+    console.log(num);
+    var cart_id = e.currentTarget.dataset.cartid;
+    wx.request({
+      url: app.d.ceshiUrl + '/Api/Shopping/up_cart',
+      method: 'post',
+      data: {
+        user_id: app.d.userId,
+        num: num,
+        cart_id: cart_id
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var status = res.data.status;
+        if (status == 1) {
+          // 只有大于一件的时候，才能normal状态，否则disable状态
+          var minusStatus = num <= 1 ? 'disabled' : 'normal';
+          // 购物车数据
+          var carts = that.data.carts;
+          carts[index].num = num;
+          // 按钮可用状态
+          var minusStatuses = that.data.minusStatuses;
+          minusStatuses[index] = minusStatus;
+          // 将数值与状态写回
+          that.setData({
+            minusStatuses: minusStatuses
+          });
+          that.sum();
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  bindCheckbox: function (e) {
+    /*绑定点击事件，将checkbox样式改变为选中与非选中*/
+    //拿到下标值，以在carts作遍历指示用
+    var index = parseInt(e.currentTarget.dataset.index);
+    //原始的icon状态
+    var selected = this.data.carts[index].selected;
+    var carts = this.data.carts;
+    // 对勾选状态取反
+    carts[index].selected = !selected;
+    // 写回经点击修改后的数组
+    this.setData({
+      carts: carts
+    });
+    this.sum()
+  },
+
+  bindSelectAll: function () {
+    // 环境中目前已选状态
+    var selectedAllStatus = this.data.selectedAllStatus;
+    // 取反操作
+    selectedAllStatus = !selectedAllStatus;
+    // 购物车数据，关键是处理selected值
+    var carts = this.data.carts;
+    // 遍历
+    for (var i = 0; i < carts.length; i++) {
+      carts[i].selected = selectedAllStatus;
+    }
+    this.setData({
+      selectedAllStatus: selectedAllStatus,
+      carts: carts
+    });
+    this.sum()
+  },
+
+  bindCheckout: function () {
+    // 初始化toastStr字符串
+    var toastStr = '';
+    // 遍历取出已勾选的cid
+    for (var i = 0; i < this.data.carts.length; i++) {
+      if (this.data.carts[i].selected) {
+        toastStr += this.data.carts[i].id;
+        toastStr += ',';
+      }
+    }
+    if (toastStr == '') {
+      wx.showToast({
+        title: '请选择要结算的商品！',
+        duration: 2000
+      });
+      return false;
+    }
+    //存回data
+    wx.navigateTo({
+      url: '../order/pay?cartId=' + toastStr,
+    })
+  },
+
+  bindToastChange: function () {
+    this.setData({
+      toastHidden: true
+    });
+  },
+
+  sum: function () {
+    var carts = this.data.carts;
+    // 计算总金额
+    var total = 0;
+    for (var i = 0; i < carts.length; i++) {
+      if (carts[i].selected) {
+        total += carts[i].num * carts[i].price;
+      }
+    }
+    // 写回经点击修改后的数组
+    this.setData({
+      carts: carts,
+      total: '¥ ' + total
+    });
+  },
+
+
+  onShow: function () {
+    this.loadProductData();
+  },
+
+  removeShopCard: function (e) {
+    var that = this;
+    var cardId = e.currentTarget.dataset.cartid;
+    wx.showModal({
+      title: '提示',
+      content: '你要取消订单吗？',
+      confirmColor: '#b28147',
+      cancelColor: '#7b7b7b',
+      success: function (res) {
+        res.confirm && wx.request({
+          url: app.d.ceshiUrl + '/Api/Shopping/delete',
+          method: 'post',
+          data: {
+            cart_id: cardId,
+          },
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            //--init data
+            var data = res.data;
+            if (data.status == 1) {
+              //that.data.productData.length =0;
+              that.loadProductData();
+            } else {
+              wx.showToast({
+                title: '操作失败！',
+                duration: 2000
+              });
+            }
+          },
+        });
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  // 数据案例
+  loadProductData: function () {
+    var that = this;
+    wx.request({
+      url: app.d.ceshiUrl + '/Api/Shopping/index',
+      method: 'post',
+      data: {
+        user_id: app.d.userId
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        //--init data
+        var cart = res.data.cart;
+        that.setData({
+          carts: cart,
+        });
+        //endInitData
+      },
+    });
+  },
+
+
+  onChangeShowState: function () {
+    var that = this;
+    that.setData({
+      showView: (!that.data.showView)
+    })
+    setTimeout(function () {
+      wx.redirectTo({
+        url: 'myorder?currentTab=1'
+      })
+    }, 2000)
+  },
+
+
+
+
+
+
+
+
+
+
+
+})

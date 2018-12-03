@@ -1,0 +1,82 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/design/index",
+    "pages/person/person",
+    "pages/person/personshow",
+    "pages/group/group",
+    "pages/group/groupshow",
+    "pages/group/groupdetail",
+    "pages/group/add",
+    "pages/login/login_d",
+    "pages/login/agreement_d",
+    "pages/work/work",
+    "pages/work/workshow",
+    "pages/work/workdetail",
+    "pages/login/login_d_p",
+    "pages/user/set",
+    "pages/user/info",
+    "pages/user/head",
+    "pages/user/password",
+    "pages/user/contact",
+    "pages/user/message",
+    "pages/user/news",
+    "pages/user/newsshow",
+    "pages/user/mygroup",
+    "pages/user/mywork",
+    "pages/user/myfocus",
+    "pages/user/myfav",
+    "pages/person/person_b",
+    "pages/person/person_b_show",
+    "pages/user/orderlist",
+    "pages/user/myorder",
+    "pages/user/orderlist_1",
+    "pages/person/person_e",
+    "pages/person/person_e_show"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#050505",
+    "navigationBarTitleText": "爱设计",
+    "navigationBarTextStyle": "wihte"
+  },
+  "tabBar": {
+    "color": "#767676",
+    "selectedColor": "#b28147",
+    "borderStyle": "white",
+    "backgroundColor": "#f5f5f5",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/btn-tabs_01.png",
+        "selectedIconPath": "images/icons/btn-tabs_07.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "iconPath": "images/icons/btn-tabs_03.png",
+        "selectedIconPath": "images/icons/btn-tabs_09.png",
+        "text": "共建人"
+      },
+      {
+        "pagePath": "pages/design/index",
+        "iconPath": "images/icons/btn-tabs_02.png",
+        "selectedIconPath": "images/icons/btn-tabs_08.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/group/group",
+        "iconPath": "images/icons/btn-tabs_04.png",
+        "selectedIconPath": "images/icons/btn-tabs_10.png",
+        "text": "圈子"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/icons/btn-tabs_06.png",
+        "selectedIconPath": "images/icons/btn-tabs_12.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

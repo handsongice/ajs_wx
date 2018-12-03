@@ -1,0 +1,80 @@
+<!--pages/user/user.wxml-->
+<view class="page">
+    <view class="userinfo">
+      <navigator class='userinfo-head' url='head' hover-class="none">
+      <view class='userinfo-avatar'>
+      <image src="/images/per0.png" class='userinfo-avatar-bg' mode='aspectFill'></image></view>
+      
+
+      </navigator>
+      <view class='userinfo-bg-b'>{{info.name}}</view>
+      <view class='userinfo-bg-b1'>
+        <text class='userinfo-txt1'>
+          <text class='userinfo-txt2 mt5 mb5'>{{info.type_name}}</text>TEL:{{info.phone}}
+        </text>
+        <navigator class='userinfo-txt3' url="../user/info" hover-class='none'>
+          <icon class='iconfont icon2 icon-edit'></icon>编辑
+        </navigator>
+      </view>
+      <image class="userinfo-bg" src="/images/user_bg.png"></image>
+			</view>
+
+    <view class="qbdd">
+    <span class="df_t font_12"><text class="w_s c3">个人签名：</text><text class='c6'>{{info.sign}}</text></span>
+    </view>
+
+    <view class="sc df tc bbe mt5">    
+    <navigator class="df_1 bre" url="../refund/refund?currentTab=0" hover-class="none" >
+          <view><icon class='iconfont icon-comments icon1' ></icon></view>
+          <text class="font_12">我的圈子</text>
+       </navigator>
+
+    <navigator class="df_1 bre" url="../rituall/rituall?currentTab=0" hover-class="none" >
+          <view><icon class='iconfont icon-pic icon1' ></icon></view>
+        <text class="font_12">我的作品</text>
+      </navigator>
+
+    <navigator class="df_1 bre" url="leader" hover-class="none" >
+          <view><icon class='iconfont icon-favorite icon1' ></icon></view>
+        <text class="font_12">我的收藏</text>
+      </navigator>
+
+      <navigator class="df_1" url="../about/about" hover-class="none" >
+          <view><icon class='iconfont icon-supplier-features icon1' ></icon></view>
+          <text class="font_12">我的关注</text>
+      </navigator>
+
+    </view>
+    <view class="sc df tc bbe">    
+    <navigator class="df_1 bre" url="../user/myorder?currentTab=1" hover-class="none" >
+          <view><icon class='iconfont icon-form icon1' ></icon></view>
+          <text class="font_12">我的订单</text>
+       </navigator>
+      <navigator class="df_1 bre" url="news" hover-class="none" >
+          <view><icon class='iconfont icon-email icon1' ></icon><span class="tag">2</span></view>
+          <text class="font_12">我的消息</text>
+       </navigator>
+    </view>
+
+    <view class="sc df tc bbe mt5">    
+    <navigator class="df_1 bre" url="message" hover-class="none" >
+          <view><icon class='iconfont icon-survey icon1' ></icon></view>
+          <text class="font_12">意见反馈</text>
+       </navigator>
+
+    <navigator class="df_1 bre" url="contact" hover-class="none" >
+          <view><icon class='iconfont icon-phone icon1' ></icon></view>
+        <text class="font_12">联系我们</text>
+      </navigator>
+
+    <navigator class="df_1 bre" url="set" hover-class="none" >
+          <view><icon class='iconfont icon-set icon1' ></icon></view>
+        <text class="font_12">账号设置</text>
+      </navigator>
+
+
+    </view>
+
+</view>
+
+

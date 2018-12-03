@@ -1,0 +1,218 @@
+// pages/person/person_b.js
+var app = getApp()
+Page({
+  data: {
+    info: {},
+    windowHeight:0,
+    windowWidth:0,
+    customerId: '',
+    pixelRatio:0,
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    navData: [],
+    list: [],
+    types: [],
+    currentTab: 0,
+    navScrollLeft: 0,
+    showView: true
+  },
+  //事件处理函数
+  onLoad: function (options) {
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          pixelRatio: res.pixelRatio,
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
+        })
+      },
+    })
+    if (!options || !options.id) {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '共建人不存在！',
+        success: function () {
+          wx.navigateBack({})
+        }
+      })
+    }
+    this.setData({
+      customerId: options.id
+    })
+    this.customerInfo()
+    this.goodsType()
+    showView: (options.showView == "true" ? true : false)
+  },
+  goodsType: function () {
+    var that = this
+    wx.request({
+      url: app.globalData.href + '/api/index/show_goods_type',
+      data: {
+        app: 'customer_app',
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var result = res.data;
+        if (result && result.code == '200') {
+          if (result.data) {
+            that.setData({
+              types: result.data,
+            })
+            var _data = []
+            for (var i = 0; i < result.data.length;i++) {
+              _data.push(i)
+            }
+            that.setData({
+              navData: _data
+            })
+            that.loadList()
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            showCancel: false,
+            content: '共建人不存在！',
+            success: function () {
+              wx.navigateBack({})
+            }
+          })
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    })
+  },
+  loadList: function () {
+    var that = this;
+    let _types = that.data.types
+    if (_types && _types.length >0) {
+      let goodsType = _types[that.data.currentTab]
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: app.globalData.href + '/api/index/show_goods_list',
+        data: {
+          app: 'customer_app',
+          type_id: goodsType.id,
+          customer_id: that.data.customerId,
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          var result = res.data;
+          if (result && result.code == '200') {
+            if (result.data) {
+              that.setData({
+                list: result.data,
+              })
+            }
+          } else {
+            wx.showToast({
+              title: '加载失败！',
+              duration: 2000
+            });
+          }
+        },
+        complete: function () {
+          wx.hideLoading()
+        },
+        fail: function () {
+          // fail
+          wx.showToast({
+            title: '网络异常！',
+            duration: 2000
+          });
+        }
+      });
+    }
+
+  },
+  customerInfo: function () {
+    var that = this
+    var customer = wx.getStorageSync('customer')
+    var customer_id = ''
+    if (customer && customer.id) {
+      customer_id = customer.id
+    }
+    wx.request({
+      url: app.globalData.href + '/api/index/get_customer_info',
+      data: {
+        app: 'customer_app',
+        fromid: customer_id,
+        id: that.data.customerId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var result = res.data;
+        if (result && result.code == '200') {
+          if (result.data) {
+            that.setData({
+              info: result.data,
+              showView: result.data.like
+            })
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            showCancel: false,
+            content: '共建人不存在！',
+            success: function () {
+              wx.navigateBack({})
+            }
+          })
+        }
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    })
+  },
+  onChangeShowState: function () {
+    var that = this;
+    that.setData({
+      showView: (!that.data.showView)
+    })
+  },
+  switchNav(event) {
+    var cur = event.currentTarget.dataset.current;
+    //每个tab选项宽度占1/5
+    var singleNavWidth = this.data.windowWidth / 5;
+    //tab选项居中                            
+    this.setData({
+      navScrollLeft: (cur - 2) * singleNavWidth
+    })
+    if (this.data.currentTab == cur) {
+      return false;
+    } else {
+      this.setData({
+        currentTab: cur
+      })
+      
+    }
+  },
+  switchTab(event) {
+    var cur = event.detail.current;
+    var singleNavWidth = this.data.windowWidth / 5;
+    this.setData({
+      currentTab: cur,
+      navScrollLeft: (cur - 2) * singleNavWidth
+    });
+    this.loadList()
+  }
+})

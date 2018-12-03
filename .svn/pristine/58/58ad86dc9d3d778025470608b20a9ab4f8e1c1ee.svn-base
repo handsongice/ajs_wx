@@ -1,0 +1,40 @@
+// pages/login/login_d.js
+var app = getApp();
+var common = require("../../utils/common.js");
+Page({
+  data: {
+    showView: true,
+    showTxt: false,
+
+  },
+  onLoad: function (options) {
+    this.setData({
+      currentTab: parseInt(options.currentTab),
+      isStatus: options.otype
+    });
+    //底部显示隐藏
+    showView: (options.showView == "true" ? true : false);
+    showTxt: (options.showTxt == "true" ? true : false)
+  },
+  onChangeShowState: function () {
+    var that = this;
+    that.setData({
+      showView: (!that.data.showView)
+    })
+    that.setData({
+      showTxt: false
+    })
+  },
+
+  onChangeShowTxt: function () {
+    var that = this;
+    that.setData({
+      showView: false
+    })
+    that.setData({
+      showTxt: true
+    })
+  },
+
+
+})

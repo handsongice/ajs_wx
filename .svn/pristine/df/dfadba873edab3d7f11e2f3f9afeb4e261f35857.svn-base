@@ -1,0 +1,64 @@
+<!--pages/group/groupdetail.wxml-->
+<view class="page">
+  <view class='group'>
+      <view class='group-head'>
+        <view class='group-avatar'>
+        <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image></view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list' url='' hover-class='none'>
+          <navigator class='group_name' hover-class='none' url='../person/personshow'>里斯本</navigator>
+          <navigator hover-class='none' url='' class='group_txt_1'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+          <view class='group_img'>
+            <navigator url='groupshow' class='group_img_list'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    
+          </view>
+
+          <view class='group_txt_dfs group_date_end'><text>今天 1小时前</text><navigator class='c6 group_txt_df' hover-class='none' bindtap="onChangeShowState">评论<icon class='iconfont icon3 icon-comments ml10'></icon></navigator></view>
+        </view>
+
+      </view>
+      
+    </view>
+  <view class='group_0'>
+    <view class="group_up_1"><view class="group_up"></view></view>
+    <view class='group_1'>      
+      <view class='group-head'>
+        <view class='group-avatar_1'>
+        <image src="/images/per1.png" class='group-avatar-bg_1' mode='aspectFill'></image></view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list' url='' hover-class='none'>
+          <view class='group_txt_dfs group_date_end_1'>          <view class='group_name_1'>里斯本</view><text>今天 1小时前</text></view>
+          <navigator bindtap="onChangeShowTxt" hover-class='none' url='' class='group_txt_1'>今天的作品展示，希望大大多发表意见。</navigator>
+        </view>
+
+      </view>
+      
+    </view>
+    <view class='group_1'>      
+      <view class='group-head'>
+        <view class='group-avatar_1'>
+        <image src="/images/per0.png" class='group-avatar-bg_1' mode='aspectFill'></image></view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list'>
+          <view class='group_txt_dfs group_date_end_1'>          <view class='group_name_1'>王佳佳</view><text>今天 1小时前</text></view>
+          <navigator bindtap="onChangeShowTxt" hover-class='none' url='' class='group_txt_1'><text class='c6'>回复里斯本：</text>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+        </view>
+
+      </view>
+      
+    </view>
+
+  </view>
+  <view class="c_b60"></view>
+  <view class="group-footer {{showView?'hide':'show'}}"> 
+    <view class='group-footer_bg'>
+      <navigator class='button3' url='' hover-class='none'>发消息</navigator>
+      <view class='group-footer_bg_1 group-footer-l'><text class="{{showTxt?'hide':'show'}}">评论:</text><text class="{{showTxt?'show':'hide'}}">回复里斯本:</text><input></input></view>
+    </view>
+ 
+  </view>
+</view>

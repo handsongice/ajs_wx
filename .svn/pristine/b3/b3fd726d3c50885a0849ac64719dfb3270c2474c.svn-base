@@ -1,0 +1,135 @@
+<!--pages/person/personshow.wxml-->
+<view class='page'>
+    <view class="personshowinfo">
+      <navigator class='personshow-head' url="../user/info" hover-class="none">
+      </navigator>
+      <view class='personshow-bg-b'>里斯本</view>
+      <view class='personshow-bg-b1'>
+        <text class='personshow-txt1'>
+          <text class='personshow-txt2 mt5 mb5'>普通设计师</text>TEL:13898989898
+        </text>
+      </view>
+      <image class="personshow-bg" src="/images/per1.png" mode='aspectFill'></image>
+			</view>
+    <view class="qbdd_per">
+    <span class="df_t font_12"><text class="w_s c3">个人签名：</text><text class='c6'>爱设计的人用爱设计小程序爱设计的人用爱设计小程序爱设计的人用爱设计小程序爱设计的人用爱设计小程序...</text></span>
+    </view>
+    <view class="swiper-tab">
+      <view class='w50 valin_c'>
+          <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="" bindtap="swichNav">圈子</view></view>
+      <view class='w50 valin_c'>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="" bindtap="swichNav">作品</view></view>
+    </view>
+
+
+<view class="c_t60"></view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 0}}px" bindchange="bindChange">
+  <!-- 圈子 -->
+  <swiper-item> 
+    <view class='group'>
+      <view class='group_date'>
+        <text class='font_12'>9月</text>
+        <view class='group_txt_df'>
+          <text class='font_20 mr3 font_b'>16</text>
+          <text class='font_12 '>日</text>
+        </view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list' >
+          <navigator class='group_txt' url='../group/groupdetail' hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+          <view class='group_img'>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    
+          </view>
+        </view>
+        <view class='group_list'>
+          <navigator class='group_txt' url='../group/groupdetail'  hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+        </view>
+
+
+      </view>
+      
+    </view>
+    <view class='group'>
+      <view class='group_date'>
+        <text class='font_12'>9月</text>
+        <view class='group_txt_df'>
+          <text class='font_20 mr3 font_b'>6</text>
+          <text class='font_12 '>日</text>
+        </view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list'>
+          <navigator class='group_txt' url='../group/groupdetail'  hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+          <view class='group_img'>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>    
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>                      
+          </view>
+        </view>
+
+
+      </view>
+      
+    </view>
+
+
+
+    <view class="c_b60"></view>
+    </swiper-item>
+
+
+  <!-- 作品 -->
+  <swiper-item>     
+      <view class='list_pro'>
+        <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
+          <view class='index_pre_img bbe'>
+            <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text></view>
+          </view>
+        </navigator>
+        <view class='index_pre_pro mb5'>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>          
+        </view>
+
+      </view>
+      <view class='list_pro'>
+        <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
+          <view class='index_pre_img bbe'>
+            <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text></view>
+          </view>
+        </navigator>
+        <view class='index_pre_pro mb5'>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+        </view>
+
+      </view>
+
+
+      <view class="c_b60"></view>
+    </swiper-item>
+
+  </swiper>
+
+  <!--底部-->
+  <view class="pro-footer"> 
+    <button class='pro-footer-l' hover-class='none' url='' bindtap="onChangeShowState"><icon class="iconfont button1 icon-supplier-features-filling {{showView?'hide':'show'}}"></icon><icon class="iconfont button1 icon-supplier-features {{showView?'show':'hide'}}"></icon><text class='button2'>{{showView?'关注':'取消关注'}}</text></button>
+    <navigator class='button3' url='' hover-class='none'>发消息</navigator>
+        
+  </view>
+</view>

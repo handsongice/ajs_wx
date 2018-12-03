@@ -1,0 +1,113 @@
+<!--pages/user/myorder.wxml-->
+<view class="page">
+  <view class="swiper-tab">
+    <view class='w50 valin_c'>
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="" bindtap="swichNav">购物车</view>
+    </view>
+    <view class='w50 valin_c'>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="" bindtap="swichNav">我的订单</view>
+    </view>
+  </view>
+
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight + 100}}px" bindchange="bindChange">
+    <!-- 购物车 -->
+    <swiper-item>
+      <view class="me show" wx:if="{{carts.length<=0}}">
+        <view class="c_t60"></view>
+        <view class='info_success mb15'>
+          <icon class='iconfont red icon1 icon-information mb15'></icon>
+          <text class='c11 font_24 l_h24'>SORRY</text>
+          <text class='c6 font_14 l_h20'>暂无商品！</text>
+        </view>
+      </view>
+      <view class="me show" wx:if="{{carts.length >0}}">
+        <view class="c_t60"></view>
+        <view wx:for="{{carts}}" wx:for-index="index">
+          <view class='qbdd bbe'>{{item.name}}</view>
+          <view class="carts-list">
+            <!--勾-->
+            <view class="carts-item" wx:for="{{item.datas}}" wx:for-item="tabItem" wx:for-index="idx">
+              <icon wx:if="{{tabItem.selected}}" data-index='{{index}}' data-idx='{{idx}}' type="success_circle" color='#b28147' size="18" bindtap="bindCheckbox" />
+              <icon wx:else type="circle" data-index='{{index}}' data-idx='{{idx}}' size="18" bindtap="bindCheckbox" />
+              <!--img-->
+              <view class='carts-img'>
+                <image class="carts-image" src="{{tabItem.pic}}" mode="aspectFill" />
+              </view>
+              <!--文字-->
+              <view class="carts-text df_1n">
+                <text class="carts-title c6">{{tabItem.name}}</text>
+                <view class="carts-subtitle">
+                  <text class="carts-price"><text class='font_10'>¥ </text>{{tabItem.price}}
+                  <text class='font_11 l_h18'>元/个</text></text>
+                  <!--右边-->
+                  <view class="title">
+                    <view class="stepper">
+                      <!-- 减号 -->
+                      <icon class="iconfont icon-reduce cart-icon" data-index='{{index}}' data-idx='{{idx}}' bindtap="bindMinus"></icon>
+                      <!-- 数值 -->
+                      <input type="number" bindchange="bindManual" value='{{tabItem.num}}' disabled='disabled'/>
+                      <!-- 加号 -->
+                      <icon class="iconfont icon-add1 cart-icon" data-index='{{index}}' data-idx='{{idx}}' bindtap="bindPlus"></icon>
+                    </view>
+                  </view>
+                  <icon bindtap="removeShopCard" data-index='{{index}}' data-idx='{{idx}}' data-pid='{{tabItem.pid}}' class="iconfont icon-delete cart-icon"></icon>
+                </view>
+
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+        <!--底部-->
+        <view class="carts-footer">
+          <view class='carts-footer-l' bindtap="bindSelectAll">
+            <view class='carts-footer-l1'>
+              <icon wx:if="{{selectedAllStatus}}" type="success_circle" color='#b28147' size="18" />
+              <icon wx:else type="circle" size="18" />
+              <text>全选</text>
+            </view>
+            <view class='carts-footer-l1 m_r5'>
+              <text>合计：</text>
+              <text class="red">{{total}}</text>
+            </view>
+          </view>
+          <view class='button3 m_r5' bindtap='bindCheckout' hover-class='none'>立即订购</view>
+        </view>
+
+        <view class='c_b60'></view>
+
+      </view>
+
+    </swiper-item>
+
+    <!-- 我的订单 -->
+    <swiper-item>
+      <view bindtap="onChangeShowState" class="me show" wx:if="{{list.length<=0}}">
+        <view class="c_t60"></view>
+        <view class='info_success mb15'>
+          <icon class='iconfont red icon1 icon-information mb15'></icon>
+          <text class='c11 font_24 l_h24'>SORRY</text>
+          <text class='c6 font_14 l_h20'>暂无订单！</text>
+        </view>
+
+      </view>
+      <view class="me show" wx:if="{{list.length>0}}">
+        <view class="c_t60"></view>
+        <navigator hover-class='none' url='orderlist_1' class='mb5' wx:for="{{list}}" wx:for-index="index">
+          <view class="qbdd bbe">
+            <span class="carts-footer-l font_12">
+              <text class="c3">订单号：{{item.order_sn}}</text>
+              <text class='c3'>{{item.create_time}}</text>
+            </span>
+          </view>
+          <view class='qbdd l_h20'>
+            <view class='carts-footer-l' wx:for="{{item.supplys}}" wx:for-item="tabItem" wx:for-index="idx">{{tabItem.supply_name}}
+              <text class='red'>{{tabItem.status_str}}</text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

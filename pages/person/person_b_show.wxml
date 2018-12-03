@@ -1,0 +1,59 @@
+<!--pages/person/person_b_show.wxml-->
+<view class="page">
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src="{{item.pic}}" class="slide-image" mode="aspectFill" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+
+  <view class='list_pro bte'>
+    <view class='index_pro' hover-class='none' url=''>
+      <view class='index_pro_title bbe'>
+        <view class='index_pro_name_b'>
+          <text class='font_14 c6 mr5 mb5 w100 index_pro_name l_h18'>{{info.name}}</text>
+        </view>
+        <view class='font_12 red l_h22 index_fl'>爱设计价：¥
+          <text class='font_18 red ml5 mr5'>{{info.sale_price}}</text>元/个</view>
+        <view class='index_pro_name_a'>
+          <text class='font_12 c3'>成交量：{{info.sale_num}}</text>
+          <navigator hover-class='none' url='' class='index_pro_tag'>{{info.supply}}</navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='index_pro_title bbe c6 font_12'>商品说明</view>
+
+  <!-- 商品说明 -->
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{imgheights}}px;" bindchange="bindChange">
+    <!-- 商品说明 -->
+    <swiper-item>
+      <view class='procontent'>
+        <block wx:for="{{details}}" wx:for-index="index">
+          <view class=''>
+            <image src="{{item.pic}}" lazy-load='true' class="slide-image" mode="aspectFill" mode="widthFix" bindload="imageLoad" style='width:100%' />
+          </view>
+        </block>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="c_b60"></view>
+
+  <!--底部-->
+  <view class="person_b_footer">
+    <view class='person_b_footer-l1'>
+      <view data-pic='{{info.pic}}' data-price='{{info.sale_price}}' data-name='{{info.name}}' data-pid='{{info.id}}' data-sid='{{info.supply_id}}' data-sname='{{info.supply}}' catchtap='addCart' class='button2 person_b_footer-l bre p_r5 w45' hover-class='none' url=''>加入购物车</view>
+      <view data-pic='{{info.pic}}' data-price='{{info.sale_price}}' data-name='{{info.name}}' data-pid='{{info.id}}' data-sid='{{info.supply_id}}' data-sname='{{info.supply}}' catchtap='doPay' class='button2 person_b_footer-l w50' hover-class='none'>立即订购</view>
+    </view>
+    <navigator class='button1 ble p_l5' hover-class='none' url='../user/myorder?currentTab=0'>
+      <icon class='iconfont button1 icon-cart'>
+        <span>{{carNum}}</span>
+      </icon>
+    </navigator>
+
+  </view>
+</view>

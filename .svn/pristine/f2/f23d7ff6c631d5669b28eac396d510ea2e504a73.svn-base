@@ -1,0 +1,102 @@
+<!--index.wxml-->
+<view class="page">
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color='rgba(170,170,170,0.5)' indicator-active-color='#b28147'>  
+      <block wx:for="{{movies}}" wx:for-index="index">  
+        <swiper-item>  
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>  
+        </swiper-item>  
+      </block>  
+  </swiper>                 
+
+ <view class='qbdd mt5'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>设计师共建人</view>
+  </view>
+  <view class='list_pro'>
+    <navigator class='index_pro' hover-class='none' url='../person/personshow?currentTab=0'>
+      <view class='index_pro_img'>
+        <image src='/images/per1.png' mode="aspectFill"></image>
+        <view class='index_txt'><text class='c6 font_18 l_h20'>里斯本</text><text class='red font_12 l_h20 mb5'>普通设计师</text><text class='index_txt1'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</text></view>
+      </view>
+    </navigator>
+    <navigator class='index_pro' hover-class='none' url='../person/personshow?currentTab=0'>
+      <view class='index_pro_img'>
+        <image src='/images/per2.png' mode="aspectFill"></image>
+        <view class='index_txt'><text class='c6 font_18 l_h20'>王佳佳</text><text class='red font_12 l_h20 mb5'>普通设计师</text><text class='index_txt1'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</text></view>
+      </view>
+    </navigator>
+
+  </view>
+
+ <view class='qbdd'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>商业共建人</view>
+  </view>
+  <view class='list_pro'>
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>建材批发有限公司</text><text class='red font_12 l_h18'>商业共建人</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator class='pre_pro_img' url=''><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+  <view class='list_pro'>
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>建材批发有限公司</text><text class='red font_12 l_h18'>商业共建人</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator class='pre_pro_img' url=''><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+
+
+  <view class='qbdd'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>工程共建人</view>
+  </view>
+  <view class='list_pro'>
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>工程建设有限公司</text><text class='red font_12 l_h18'>工程共建人</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+  <view class='list_pro'>
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>工程建设有限公司</text><text class='red font_12 l_h18'>工程共建人</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator class='pre_pro_img' url=''><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+      <navigator class='pre_pro_img' url=''><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+
+</view>
+
+
+

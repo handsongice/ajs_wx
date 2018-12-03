@@ -1,0 +1,53 @@
+<!--pages/person/person_e_show.wxml-->
+<view class="page">
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+      <block wx:for="{{movies}}" wx:for-index="index">  
+        <swiper-item>  
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill"  mode="widthFix"/>  
+        </swiper-item>  
+      </block>
+  </swiper>
+
+
+  <view class='list_pro bte'>
+    <view class='index_pro' hover-class='none' url=''>
+     <view class='index_pro_title bbe'>
+        <view class='index_pro_name_b'>
+          <text class='font_14 c6 mr5 mb5 w100 index_pro_name l_h18'>幸福花园小区水管线路</text>
+        </view>
+         <view class='font_12 red l_h22 index_fl'>爱设计价：¥<text class='font_18 red ml5 mr5'>300000</text>元/套</view>
+         <view class='index_pro_name_a'>
+          <text class='font_12 c3'>成交量：378</text>
+          <navigator hover-class='none' url='' class='index_pro_tag'>工程建设有限公司</navigator>
+         </view>
+      </view>
+    </view>
+  </view>
+  
+
+  <view class='index_pro_title bbe c6 font_12'>工程说明</view>
+
+
+  <!-- 工程说明 -->
+    <view class='procontent'>
+      工程说明
+    </view>
+
+
+
+    <view class="c_b60"></view>
+
+
+    <!--底部-->
+  <view class="person_b_footer">
+    <view class='person_b_footer-l1'>
+      <navigator class='button2 person_b_footer-l bre p_r5 w45' hover-class='none' url=''>加入购物车</navigator>
+      <navigator class='button2 person_b_footer-l w50' url='../user/orderlist' hover-class='none'>立即订购</navigator>
+    </view>   
+    <navigator class='button1 ble p_l5' hover-class='none' url='../user/myorder?currentTab=0'><icon class='iconfont button1 icon-cart'><span>1</span></icon></navigator>
+
+  </view>
+</view>
+
+
+

@@ -1,0 +1,18 @@
+<!--pages/login/login_d.wxml-->
+<view class="page">
+    <view class="userinfo">
+      <image class="userinfo-bg" src="/images/login_bg.png"></image>
+		</view>
+
+    <view class="login_qbdd bbe">
+      <input placeholder='请输入手机号' placeholder-class='c9' class='w70'></input>
+    </view>
+    <view class="login_qbdd bbe mb15">
+      <input placeholder='请输入验证码' placeholder-class='c9' class='w70'></input>
+      <navigator bindtap="onChangeShowState" class="login_code {{showView?'show':'hide'}}" hover-class='none'>获取验证码</navigator>
+      <view class="login_code_1 {{showView?'hide':'show'}}">60'S</view>
+    </view>
+    <navigator open-type='switchTab' class='login' hover-class='none' url='../index/index'>立即登录</navigator>
+
+</view>
+

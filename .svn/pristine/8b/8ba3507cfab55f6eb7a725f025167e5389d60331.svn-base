@@ -1,0 +1,13 @@
+//index.js  
+//获取应用实例  
+var app = getApp()
+Page({
+  data: {
+    movies: [
+      { url: '/images/index_bg_01.png' },
+      { url: '/images/index_bg_01.png' },
+      { url: '/images/index_bg_01.png' }
+    ]
+  },
+ 
+})

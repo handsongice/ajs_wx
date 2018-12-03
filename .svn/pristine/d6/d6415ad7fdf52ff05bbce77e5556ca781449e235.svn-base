@@ -1,0 +1,72 @@
+<!--pages/group/add.wxml-->
+<view class='page'>
+<!--弹出窗-->
+<view animation="{{animationData}}" class=" buydes-dialog-container" wx:if="{{showMask}}" bindtap="changeMaskVisible">
+       <view class="buydes-dialog-bg">
+          <view class='buydes-b'>
+            <icon class='iconfont icon-warning icon1 c6'></icon>
+            <text class='c6 ml15 mt10'>您输入的内容有误，</text><text class='c6 ml15'>请重新输入！</text>
+          </view>
+<!--
+          <view class='buydes-b1'>
+              <button bindtap="hideModal" class="buydes-btn1" >继续推荐</button>
+              <button bindtap="hideModal" class="buydes-btn2" >返回</button>          
+          </view>
+-->  
+       </view>
+</view>
+
+
+<view class="me {{showView?'show':'hide'}}">
+  <view class='add_group'>
+    <textarea bindtap="changeMaskVisible" placeholder='您这一刻的想法...' placeholder-class='add_group_p' id="text-area" value="{{txtContent}}" bindinput='txtInput' bindlinechange="textAreaLineChange" wx:if="{{!showMask}}"></textarea>
+    <view class='m_textarea'  wx:else>
+      <rich-text nodes="{{txtRealContent}}"></rich-text>
+    </view>
+    <text class='add_txt'>0/200</text>
+  </view>
+
+  <view class='add_group_bg'>
+    <text class='add_txt_1'>添加图片（选填）</text>
+    <text class='add_txt'>0/9</text>
+  <!-- 图片上传 -->
+  <view class='uploadimg'>
+    <view class='uploadimgBox imgbtn'>
+        <block wx:for="{{imgs}}" wx:if="{{imgs.length>0}}">
+          <image mode='aspectFill' class='addpic' data-index='{{index}}' src="{{item}}" bindtap='reom'></image>
+        </block>
+      <view class='addImg' wx:if="{{canChoose}}" bindtap='chooseImageTap'>
+        <view class='addImg_bg'>
+        <icon class='iconfont icon-add'></icon></view>
+      </view>
+       <view class='addImg1' wx:else bindtap='noChoose'>
+      </view>
+      <view class='addImgMsg'wx:if="{{imgs.length<=0}}">
+      </view>
+ 
+    </view>
+    </view>
+  </view>
+  <!--底部-->
+  <view class="add-footer"> 
+    <navigator class='button3' url='' bindtap="onChangeShowState" hover-class='none'>发布</navigator>
+  </view> 
+
+ </view>
+  <view class="me {{showView?'hide':'show'}}">
+  
+    <view class='info_success mb15'>
+      <icon class='iconfont red icon1 icon-success mb15'></icon>
+      <text class='c11 font_24 l_h24'>SUCCESS</text>
+      <text class='c6 font_14 l_h20'>发布成功！</text>
+    </view>
+  
+  </view>
+
+
+
+
+
+
+</view>
+

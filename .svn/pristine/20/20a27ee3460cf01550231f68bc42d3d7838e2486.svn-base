@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="page">
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-color='rgba(170,170,170,0.5)' indicator-active-color='#b28147'>  
+      <block wx:for="{{movies}}" wx:for-index="index">  
+        <swiper-item>  
+          <image src="{{item.pic}}" class="slide-image" mode="aspectFill"/>  
+        </swiper-item>  
+      </block>  
+  </swiper>                 
+
+ <view class='qbdd mt5'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>设计师共建人</view>
+  </view>
+  <view class='list_pro'>
+    <navigator wx:for="{{sjs}}" wx:for-index="index" class='index_pro' hover-class='none' url='../person/personshow?id={{item.id}}&currentTab=0'>
+      <view class='index_pro_img'>
+        <image src='{{item.pic}}' mode="aspectFill"></image>
+        <view class='index_txt'><text class='c6 font_18 l_h20'>{{item.name}}</text><text class='red font_12 l_h20 mb5'>{{item.type_name}}</text><text class='index_txt1'>{{item.sign}}</text></view>
+      </view>
+    </navigator>
+  </view>
+
+ <view class='qbdd'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>商业共建人</view>
+  </view>
+  <view class='list_pro' wx:for="{{sy}}" wx:for-index="index" >
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='{{item.pic}}' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>{{item.name}}</text><text class='red font_12 l_h18'>{{item.type_name}}</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="navItem" class='pre_pro_img' url=''><image src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+
+  <view class='qbdd'>
+    <view class='index_title'><icon class='iconfont icon-good'></icon>工程共建人</view>
+  </view>
+  <view class='list_pro' wx:for="{{gc}}" wx:for-index="index">
+    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+      <view class='index_pre_img bbe'>
+        <image src='{{item.pic}}' mode="aspectFill"></image>
+        <view class='index_txt2'><text class='c6 font_16 l_h20'>{{item.name}}</text><text class='red font_12 l_h18'>{{item.type_name}}</text></view>
+      </view>
+    </navigator>
+    <view class='index_pre_pro mb5'>
+      <navigator wx:for="{{item.case}}" wx:for-index="idx" wx:for-item="navItem" class='pre_pro_img' url=''><image src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
+    </view>
+
+  </view>
+
+</view>
+
+
+

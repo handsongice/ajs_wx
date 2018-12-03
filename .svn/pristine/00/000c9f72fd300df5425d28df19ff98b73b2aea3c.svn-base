@@ -1,0 +1,78 @@
+<!--pages/group/groupdetail.wxml-->
+<view class="page">
+  <view class='group'>
+    <view class='group-head'>
+      <view class='group-avatar'>
+        <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image>
+      </view>
+    </view>
+    <view class='group_r'>
+      <view class='group_list' url='' hover-class='none'>
+        <navigator class='group_name' hover-class='none' url='../person/personshow?id={{info.customer_id}}&currentTab=0'>{{info.customer_name}}</navigator>
+        <navigator hover-class='none' url='' class='group_txt_1'>{{info.title}}</navigator>
+        <view class='group_img' wx:if='{{info.pics}}'>
+          <navigator wx:for="{{info.pics}}" url='groupshow' class='group_img_list'>
+            <image src='{{item.pic}}' mode="aspectFill"></image>
+          </navigator>
+        </view>
+
+        <view class='group_txt_dfs group_date_end'>
+          <text>{{info.create_time}}</text>
+          <navigator class='c6 group_txt_df' hover-class='none' bindtap="onChangeShowState">评论
+            <icon class='iconfont icon3 icon-comments ml10'></icon>
+          </navigator>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+  <view class='group_0' wx:if='{{list && list.length >0}}'>
+    <view class="group_up_1" >
+      <view class="group_up"></view>
+    </view>
+    <view class='group_1' wx:for="{{list}}">
+      <view class='group-head'>
+        <view class='group-avatar_1'>
+          <image src="{{item.pic}}" class='group-avatar-bg_1' mode='aspectFill'></image>
+        </view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list' url='' hover-class='none'>
+          <view class='group_txt_dfs group_date_end_1'>
+            <view class='group_name_1'>{{item.customer_name}}</view>
+            <text>{{item.create_time}}</text>
+          </view>
+          <navigator bindtap="onChangeShowTxt" hover-class='none' url='' class='group_txt_1'>{{item.introduction}}</navigator>
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+  <view class="c_b60"></view>
+  <view class="pro-footer">
+    <button class='pro-footer-l' hover-class='none' url='' bindtap="onChangeShowFav">
+      <icon class="iconfont button1 icon-favorites-filling {{showFav?'show':'hide'}}"></icon>
+      <icon class="iconfont button1 icon-favorite {{showFav?'hide':'show'}}"></icon>
+      <text class='button2'>{{showFav?'取消收藏':'收藏'}}</text>
+    </button>
+    <view class='button3' url="" hover-class='none' bindtap="onChangeShowState">评论</view>
+  </view>
+
+  <view class="group-footer {{showView?'hide':'show'}}">
+    <view class='group-footer_bg'>
+      <view class='button3' bindtap='putMessage' hover-class='none'>发送</view>
+      <view class='group-footer_bg_1 group-footer-l'>
+        <text class="{{showTxt?'hide':'show'}}">评论:</text>
+        <text class="{{showTxt?'show':'hide'}}">回复:</text>
+        <input bindinput='getMessage' value='{{message}}'></input>
+      </view>
+    </view>
+    <view bindtap='onChangeShowIcon' hover-class='none' class='p_l5 group_txt_2'>匿名
+      <icon class="{{showIcon?'show':'hide'}} ml5" type="success_circle" color='#b28147' size="18" />
+      <icon class="{{showIcon?'hide':'show'}} ml5" type="circle" size="18" />
+    </view>
+  </view>
+</view>

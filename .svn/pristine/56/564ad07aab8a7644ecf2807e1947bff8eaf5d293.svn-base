@@ -1,0 +1,83 @@
+/* pages/user/news.wxss */
+page{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.page {
+  font-family: '微软雅黑';
+  position: relative;
+  height: 100%;
+}
+
+.news .news_pre{
+  border-bottom: 1px solid #eaeaea;
+}
+.news .news_pre:last-child{
+  border:0;
+
+}
+
+.news_pro_name_a{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.news_pro_name{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.index_fl{
+  display: flex;
+  align-items: center;
+}
+.index_fl_1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.index_fl_2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.index_fl_3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink:0;
+}
+.news_pre_img{
+  position: relative;
+  width: 90%;
+  background: #fff;
+  display: flex;
+  padding:5% 5%;
+  align-items: center;
+}
+.news_pre_img image{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 100rpx;
+}
+.news_txt2{
+  display: flex;
+  align-items:flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 0 0 5%;
+  flex-grow:1;
+  overflow: hidden;
+  position: relative;
+}
+.news_txt1{
+  text-align:left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+

@@ -1,0 +1,26 @@
+<!--pages/design/index.wxml-->
+<view class='d_bg'><image src='../../images/aidesign.png' mode="widthFix"></image></view>
+<view class='d_menu'>
+<navigator class='d_menu_l' url='' hover-class='d_menu_a'>
+  <icon class='iconfont icon-trophy'></icon>
+  <text>爱设计奖</text>
+</navigator>
+<navigator class='d_menu_l' url='' hover-class='d_menu_a'>
+  <icon class='iconfont icon-discount'></icon>
+  <text>爱设计节</text>
+</navigator>
+<navigator class='d_menu_l' url='' hover-class='d_menu_a'>
+  <icon class='iconfont icon-public'></icon>
+  <text>为爱设计公益</text>
+</navigator>
+<navigator class='d_menu_l' url='' hover-class='d_menu_a'>
+  <icon class='iconfont icon-college'></icon>
+  <text>爱设计学院</text>
+</navigator>
+<navigator class='d_menu_l' url='' hover-class='d_menu_a'>
+  <icon class='iconfont icon-committee'></icon>
+  <text>爱设计委员会</text>
+</navigator>
+
+
+</view>

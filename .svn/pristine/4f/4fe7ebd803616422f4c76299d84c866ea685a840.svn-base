@@ -1,0 +1,13 @@
+// pages/group/groupshow.js
+var app = getApp()
+Page({
+  data: {
+    movies: [
+      { url: '/images/index_bg_01.png' },
+      { url: '/images/pro1.png' },
+      { url: '/images/per2.png' },
+      { url: '/images/aidesign1.png' }
+    ]
+  },
+
+})

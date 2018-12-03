@@ -1,0 +1,42 @@
+<!--pages/user/head.wxml-->
+<view class="page">
+  <view class="me {{showView?'show':'hide'}}">
+  <text class='info_txt_1'>点击选择更换个人头像</text>
+  <view class='user_info_bg'>
+  <!-- 图片上传 -->
+  <view class='uploadimg mb15'>
+    <view class='uploadimgBox imgbtn'>
+        <block wx:for="{{imgs}}" wx:if="{{imgs.length>0}}">
+          <image mode='aspectFill' class='addpic' data-index='{{index}}' src="{{item}}" bindtap='reom'></image>
+        </block>
+      <view class='addImg' wx:if="{{canChoose}}" bindtap='chooseImageTap'>
+        <view class='addImg_bg'>
+        <image src='../../images/per0.png' mode='aspectFill'></image></view>
+      </view>
+       <view class='addImg1' wx:else bindtap='noChoose'>
+      </view>
+      <view class='addImgMsg'wx:if="{{imgs.length<=0}}">
+      </view>
+ 
+    </view>
+    </view>
+  </view>
+
+    <navigator class='login' hover-class='none' url='agreement_d' bindtap="onChangeShowState">确定</navigator>
+
+  </view>
+  <view class="me {{showView?'hide':'show'}}">
+  
+    <view class='info_success mb15'>
+      <icon class='iconfont red icon1 icon-success mb15'></icon>
+      <text class='c11 font_24 l_h24'>SUCCESS</text>
+      <text class='c6 font_14 l_h20'>保存成功</text>
+    </view>
+  
+  </view>
+
+</view>
+
+
+
+

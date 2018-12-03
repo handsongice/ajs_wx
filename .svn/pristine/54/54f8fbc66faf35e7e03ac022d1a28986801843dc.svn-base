@@ -1,0 +1,94 @@
+<!--pages/person/person_b.wxml-->
+<view class="page">
+  <view class='search'>
+    <view hover-class='none' class='per_b_bg'>
+      <icon class='iconfont icon-search font_18'></icon>
+      <input placeholder='请输入搜索关键词' auto-focus value='{{key}}' placeholder-class="font_12 c10" bindinput="doSearch"></input>
+    </view>
+  </view>
+  <view class='person_b_bg'>
+    <view class='h_180'></view>
+    <view class='peson_b_pre_img'>
+      <image src='{{info.pic}}' mode="aspectFill"></image>
+      <view class='index_txt2'>
+        <text class='white font_18 l_h20'>{{info.name}}</text>
+        <text class='red font_12 l_h18'>{{info.type_name}}</text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='pro_bg'>
+    <!-- tab导航栏 -->
+    <!-- scroll-left属性可以控制滚动条位置 -->
+    <!-- scroll-with-animation滚动添加动画过渡 -->
+    <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
+      <block wx:for="{{types}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
+        <view class="nav-item {{currentTab == idx ?'active':''}}" data-current="{{idx}}" bindtap="switchNav">{{navItem.name}}</view>
+      </block>
+    </scroll-view>
+    <!-- 页面内容 -->
+
+    <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab">
+      <swiper-item wx:for="{{navData}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" class="tab-content">
+        <scroll-view scroll-y="true">
+          <block>
+            <view class='h_170'></view>
+            <view class='list_pro'>
+              <navigator wx:for="{{list}}" wx:for-item="item" class='index_pro' hover-class='none' url='../person/person_b_show?id={{item.id}}'>
+                <view class='index_pro_img bbe'>
+                  <image src='{{item.pic}}' mode="widthFix"></image>
+                </view>
+                <view class='index_pro_title'>
+                  <view class='index_pro_name_a mt5'>
+                    <text class='font_14 c6 mr5 l_h24 w100 index_pro_name'>{{item.name}}</text>
+                  </view>
+                  <view class='index_fl_1'>
+                    <view class='person_b_price'>
+                      <view class='font_12 red l_h22 index_fl'>爱设计价：¥
+                        <text class='font_18 red ml5'>{{item.sale_price}}</text>
+                      </view>
+                      <view class='font_12 c3 l_h18'>成交量：{{item.sale_num}}</view>
+                    </view>
+                    <view data-pic='{{item.pic}}' data-price='{{item.sale_price}}' data-name='{{item.name}}' data-pid='{{item.id}}' data-sid='{{item.supply_id}}' data-sname='{{item.supply}}' catchtap='addCart' class='index_cart index_fl_2 mt8' hover-class='none'>
+                      <icon class='iconfont icon-cart'></icon>
+                      加入购物车
+                    </view>
+                  </view>
+                </view>
+              </navigator>
+            </view>
+
+            <view class="c_b60"></view>
+
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="pro-footer">
+    <button class='pro-footer-l' hover-class='none' url='' bindtap="onChangeShowState">
+      <icon class="iconfont button1 icon-supplier-features-filling {{showView?'hide':'show'}}"></icon>
+      <icon class="iconfont button1 icon-supplier-features {{showView?'show':'hide'}}"></icon>
+      <text class='button2'>{{showView?'关注':'取消关注'}}</text>
+    </button>
+    <view class='stepper1 w50'>
+      <navigator class='button3 m_r5' url='../user/newsshow?id={{info.id}}' hover-class='none'>发消息</navigator>
+      <navigator class='button1 ble p_l10' hover-class='none' url='../user/myorder?currentTab=0'>
+        <icon class='iconfont button1 icon-cart'>
+          <span>{{carNum}}</span>
+        </icon>
+      </navigator>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+
+</view>

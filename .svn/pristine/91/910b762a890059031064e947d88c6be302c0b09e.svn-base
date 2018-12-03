@@ -1,0 +1,69 @@
+<!--pages/group/group.wxml-->
+<view class="page">
+  <view class="personhead">
+      <view class='personhead-bg-b'>
+      圈子
+      <navigator class='grouphead_txt' url='add' hover-class='none'>
+      <icon class='iconfont icon2 icon-comments-add'></icon>发布
+      </navigator>
+      
+      </view>
+      <image class="personhead-bg" src="/images/group.png"></image>
+	</view> 
+    <view class='group'>
+      <view class='group-head'>
+        <view class='group-avatar'>
+        <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image></view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list'>
+          <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=0'>里斯本</navigator>
+          <navigator hover-class='none' url='groupdetail' class='group_txt'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+          <view class='group_img'>
+            <navigator url='groupshow' class='group_img_list'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+    
+          </view>
+
+          <view class='group_txt_dfs group_date_end'><text>今天 1小时前</text><navigator class='red group_txt_df' url='groupdetail' hover-class='none'>10<icon class='iconfont icon3 icon-comments ml5'></icon></navigator></view>
+        </view>
+
+      </view>
+      
+    </view>
+    <view class='group'>
+      <view class='group-head'>
+        <view class='group-avatar'>
+        <image src="/images/per0.png" class='group-avatar-bg' mode='aspectFill'></image></view>
+      </view>
+      <view class='group_r'>
+        <view class='group_list'>
+          <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=0'>里斯本</navigator>          
+          
+          
+        <navigator hover-class='none' url='groupdetail' class='group_txt'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
+        <view class='group_img'>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>    
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
+            <navigator class='group_img_list' url='groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>                      
+          </view>
+
+          <view class='group_txt_dfs group_date_end'><text>今天 1小时前</text><navigator class='red group_txt_df' url='groupdetail' hover-class='none'>10<icon class='iconfont icon3 icon-comments ml5'></icon></navigator></view>       
+
+        </view>
+
+
+      </view>
+      
+    </view>
+
+
+
+
+</view>

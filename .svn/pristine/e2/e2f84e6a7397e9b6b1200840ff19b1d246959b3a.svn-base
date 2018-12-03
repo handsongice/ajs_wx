@@ -1,0 +1,74 @@
+<!--pages/user/newsshow.wxml-->
+<view id='j_page' class="page">
+  <view animation="{{animationData}}" class=" buydes-dialog-container" wx:if="{{showMask}}" bindtap="changeMaskVisible">
+    <view class="buydes-dialog-bg">
+      <image mode='aspectFit' src="../../images/person.png"></image>
+    </view>
+  </view>
+  <block wx:for="{{list}}">
+    <view class='newsshow_1' wx:if="{{item.show == 1}}">
+      <view class='newsshow-head_1'>
+        <view class='newsshow-avatar'>
+          <image src="{{item.pic}}" class='newsshow-avatar-bg' mode='aspectFill'></image>
+        </view>
+      </view>
+      <view class='newsshow_r'>
+        <view class='newsshow_list_1' url='' hover-class='none'>
+          <view class="newsshow_up_1"></view>
+          <view class='group_txt_1'>{{item.content}}</view>
+
+        </view>
+      </view>
+    </view>
+    <view class='newsshow_1' wx:if="{{item.show == 2}}">
+      <view class='newsshow-head_1'>
+        <view class='newsshow-avatar'>
+          <image src="{{item.pic}}" class='newsshow-avatar-bg' mode='aspectFill'></image>
+        </view>
+      </view>
+      <view class='newsshow_r newsshow_2'>
+        <navigator bindtap="changeMaskVisible" class='newsshow_img' url='' hover-class='none'>
+          <image mode='aspectFill' src="{{item.content}}"></image>
+        </navigator>
+      </view>
+    </view>
+    <view class='newsshow' wx:if="{{item.show == 3}}">
+      <view class='newsshow-head'>
+        <view class='newsshow-avatar'>
+          <image src="{{item.pic}}" class='newsshow-avatar-bg' mode='aspectFill'></image>
+        </view>
+      </view>
+      <view class='newsshow_r'>
+        <view class='newsshow_list' url='' hover-class='none'>
+          <view class="newsshow_up"></view>
+          <view class='group_txt_1'>{{item.content}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='newsshow' wx:if="{{item.show == 4}}">
+      <view class='newsshow-head'>
+        <view class='newsshow-avatar'>
+          <image src="{{item.pic}}" class='newsshow-avatar-bg' mode='aspectFill'></image>
+        </view>
+      </view>
+      <view class='newsshow_r'>
+        <navigator class='newsshow_img newsshow_3' bindtap="changeMaskVisible" url='' hover-class='none'>
+          <image mode='aspectFill' src="{{item.content}}"></image>
+        </navigator>
+      </view>
+    </view>
+  </block>
+
+  <view class="c_b60"></view>
+  <view class="news-footer">
+    <view class='news-footer_bg'>
+      <view class='button3' bindtap='pustMessage' hover-class='none'>发送</view>
+      <view class='news-footer_bg_1 news-footer-l'>
+        <input type='text' bindinput='getMessage' value='{{message}}'></input>
+      </view>
+    </view>
+    <navigator bindtap='chooseImageTap' url='' hover-class='none' class='p_l5'>
+      <icon class='icon4 iconfont icon-pic'></icon>
+    </navigator>
+  </view>
+</view>

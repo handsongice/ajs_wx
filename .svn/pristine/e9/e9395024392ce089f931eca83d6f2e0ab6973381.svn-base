@@ -1,0 +1,25 @@
+<!--pages/user/news.wxml-->
+<view class="page">
+  <view class='news'>
+    <navigator class='news_pre' hover-class='none' url='newshow'>
+      <view class='news_pre_img'>
+        <view class='index_fl_3'><image src='/images/per0.png' mode="aspectFill"></image></view>    
+        <view class='news_txt2'>
+          <view class='l_h20 news_pro_name_a w100'><text class='c6 font_16'>里斯本</text><text class='c3 font_12 '>今天 1小时前</text></view>
+          <text class='c3 news_txt1 font_12 l_h18'>今天的作品展示今天的作品展示今天的作品展示今天的作品展示今天的作品展示今天的作品展示</text>
+        </view>
+      </view>
+    </navigator>
+    <navigator class='news_pre' hover-class='none' url='newshow'>
+      <view class='news_pre_img'>
+        <view class='index_fl_3'><image src='/images/index_bg_01.png' mode="aspectFill"></image></view>    
+        <view class='news_txt2'>
+          <view class='l_h20 news_pro_name_a w100'><text class='c6 font_16'>里斯本</text><text class='c3 font_12 '>今天 1小时前</text></view>
+          <text class='c3 news_txt1 font_12 l_h18'>今天的作品展示今天的作品展示今天的作品展示今天的作品展示今天的作品展示今天的作品展示</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+</view>
+

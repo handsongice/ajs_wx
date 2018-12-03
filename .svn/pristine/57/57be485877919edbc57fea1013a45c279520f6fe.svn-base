@@ -1,0 +1,41 @@
+<!--pages/group/group.wxml-->
+<view class="page">
+  <view class="personhead">
+    <view class='personhead-bg-b'>
+      圈子
+      <navigator class='grouphead_txt' url='add' hover-class='none'>
+        <icon class='iconfont icon2 icon-comments-add'></icon>发布
+      </navigator>
+
+    </view>
+    <image class="personhead-bg" src="/images/group.png"></image>
+  </view>
+  <view class='group' wx:for="{{list}}" wx:for-index="index">
+    <view class='group-head'>
+      <view class='group-avatar'>
+        <image src="{{item.pic}}" class='group-avatar-bg' mode='aspectFill'></image>
+      </view>
+    </view>
+    <view class='group_r'>
+      <view class='group_list'>
+        <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=0&id={{item.customer_id}}'>{{item.customer_name}}</navigator>
+        <navigator hover-class='none' url='groupdetail?id={{item.id}}' class='group_txt'>{{item.title}}</navigator>
+        <view class='group_img' wx:if='{{item.pics && item.pics.length>0}}'>
+          <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" url='groupshow?id={{item.id}}&currentTab={{idx}}' class='group_img_list'>
+            <image src='{{navItem.pic}}' mode="aspectFill"></image>
+          </navigator>
+        </view>
+
+        <view class='group_txt_dfs group_date_end'>
+          <text>{{item.create_time}}</text>
+          <navigator class='red group_txt_df' url='groupdetail?id={{item.id}}' hover-class='none'>{{item.adds}}
+            <icon class='iconfont icon3 icon-comments ml5'></icon>
+          </navigator>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>

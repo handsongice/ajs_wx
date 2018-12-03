@@ -1,0 +1,133 @@
+/* pages/user/news.wxss */
+page{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.page {
+  font-family: '微软雅黑';
+  position: relative;
+  height: 100%;
+}
+
+.news .touch-item{
+  border-bottom: 1px solid #eaeaea;
+}
+.news .touch-item:last-child{
+  border:0;
+
+}
+
+.news_pro_name_a{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.news_pro_name{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.index_fl{
+  display: flex;
+  align-items: center;
+}
+.index_fl_1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.index_fl_2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.index_fl_3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink:0;
+}
+.news_pre_img{
+  position: relative;
+  width: 90%;
+  background: #fff;
+  display: flex;
+  padding:5% 5%;
+  align-items: center;
+}
+.news_tag{
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  background: #c32620;
+  top: 12%;
+  left: 3%;
+  display: block;
+}
+.news_pre_img image{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 100rpx;
+}
+.news_txt2{
+  display: flex;
+  align-items:flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 0 0 5%;
+  flex-grow:1;
+  overflow: hidden;
+  position: relative;
+}
+.news_txt1{
+  text-align:left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+
+.touch-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden
+}
+.content {
+  width: 100%;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(130rpx);
+  transform: translateX(130rpx);
+  margin-left: -128rpx
+}
+.del {
+  background-color: #eaeaea;
+  width: 130rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4b4b4b;
+  -webkit-transform: translateX(130rpx);
+  transform: translateX(130rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 14px;
+}
+.del icon{
+ color: #7b7b7b;
+ font-size: 22px;
+ display: flex;
+ line-height: 30px;
+}
+.touch-move-active .content,
+.touch-move-active .del {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}

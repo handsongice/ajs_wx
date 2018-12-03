@@ -1,0 +1,97 @@
+<!--pages/user/orderlist_1.wxml-->
+<view class="page">        
+  <view class="me {{showView?'show':'hide'}}">
+    <view class="qbdd bbe">
+    <span class="carts-footer-l font_12"><text class="c3">订单号：3484759872773</text><text class='c3'>2018-08-21 13:35:00</text></span>
+    </view>
+    <view>
+      <view class='qbdd carts-footer-l bbe'>建材批发有限公司<text  class='red'>未确认</text></view>
+      <view class="carts-list">
+          <view class="carts-item">
+          <!--img-->
+          <view class='carts-img'>
+              <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+          </view>
+          <!--文字-->
+        <view class="carts-text df_1n">
+            <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段800g</text>
+          <view class="carts-subtitle">
+              <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+              <view class="stepper c3 font_14">X1</view> 
+          </view>
+
+          </view>
+
+
+        </view>
+      </view>
+    </view>
+    <view>
+        <view class='qbdd carts-footer-l bbe'>建材批发有限公司<text  class='red'>已确认</text></view>
+        <view class="carts-list">
+            <view class="carts-item">
+            <!--img-->
+            <view class='carts-img'>
+                <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+            </view>
+            <!--文字-->
+          <view class="carts-text df_1n">
+              <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段</text>
+            <view class="carts-subtitle">
+                <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+                <view class="stepper c3 font_14">X10</view> 
+            </view>
+
+            </view>
+
+
+          </view>
+        </view>
+
+
+        <view class="carts-list">
+            <view class="carts-item">
+            <!--img-->
+            <view class='carts-img'>
+                <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+            </view>
+            <!--文字-->
+          <view class="carts-text df_1n">
+              <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段</text>
+            <view class="carts-subtitle">
+                <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+                <view class="stepper c3 font_14">X10</view> 
+            </view>
+
+            </view>
+
+
+          </view>
+        </view>
+      </view>
+      <view class="carts-list-footer mb5">
+        <span class="carts-footer-l"><text class="c3 font_12">总计：<text class='c6 font_12'>¥</text><text class='font_16 c6'>1800</text></text></span>
+        <navigator class='stepper1 w50'bindtap="removeShopCard" hover-class='none' ><text class='m_r5 font_12 c3'>删除</text><icon  class="iconfont icon-delete cart-icon"></icon></navigator>
+       </view>
+  </view>
+
+
+
+  <view class="me {{showView?'hide':'show'}}">
+  
+    <view class='info_success mb15'>
+      <icon class='iconfont red icon1 icon-success mb15'></icon>
+      <text class='c11 font_24 l_h24'>SUCCESS</text>
+      <text class='c6 font_14 l_h20'>订购成功！</text>
+    </view>
+  
+  </view>
+
+
+
+
+
+</view>
+
+
+

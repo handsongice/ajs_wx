@@ -1,0 +1,42 @@
+/* pages/design/index.wxss */
+page{
+  height: 100%;
+}
+.d_bg{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.d_bg image{
+  width: 100%;
+}
+.d_menu{
+  width: 100%;
+  padding:20rpx 0;
+  background: #1e1e1e;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+}
+.d_menu_l{
+  width: 14%;
+  display: flex;
+  align-items: center;
+  flex-direction:  column;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  padding:0 3%;
+}
+.d_menu_a{
+  color: #b28147;
+}
+.d_menu_l icon{
+  font-size: 55rpx;
+  line-height: 75rpx;
+}
+.d_menu_l text{
+  line-height: 16px;
+}

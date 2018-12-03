@@ -1,0 +1,15 @@
+<!--pages/user/set.wxml-->
+<view class="page">
+
+    <navigator class="qbdd_set bbe" hover-class='none' url='password'>
+      <text class="w_s c6">修改密码</text>
+      <icon class='iconfont icon1 icon-more'></icon>
+    </navigator>
+    <navigator class="qbdd_set bbe" hover-class='none' url='../index/index' open-type='switchTab'>
+      <text class="w_s c6">退出登录</text>
+      <text class='c6'></text>
+    </navigator>
+
+
+</view>
+

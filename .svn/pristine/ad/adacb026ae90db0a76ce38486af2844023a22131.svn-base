@@ -1,0 +1,52 @@
+/* pages/work/workshow.wxss */
+page{
+  height: 100%;
+  position: relative;
+  width: 100%;
+  background: #050505;
+}
+.page {
+  font-family: '微软雅黑';
+  position: relative;
+  height: 100%;
+}
+.swiper {
+  width: 100%;
+  height: 92%;
+}
+
+.swiper image {
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+}
+.groupshow_footer{
+  width: 90%;
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  background:rgba(30, 30, 30, 0.9);
+  z-index:20;
+  color: #7b7b7b;
+  padding: 0 5%;
+  align-items: center;
+}
+.bx10{
+  height: 8%;
+}
+.groupshow_footer_l{
+  display: flex;
+  justify-content:center;
+}
+.groupshow_footer_txt{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.icon3{
+  font-size: 18px;
+  color:rgba(123,123,123,1);
+  display: flex;
+}

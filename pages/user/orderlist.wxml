@@ -1,0 +1,67 @@
+<!--pages/user/orderlist.wxml-->
+<view class="page">
+  <view class="me show">
+    <!-- <view class="qbdd">
+      <span class="carts-footer-l font_12">
+        <text class="c3">订单号：3484759872773</text>
+        <text class='c3'>2018-08-21 13:35:00</text>
+      </span>
+    </view> -->
+    <view wx:for="{{carts}}" wx:for-index="index">
+      <view class='qbdd carts-footer-l bbe mt5'>{{item.name}}
+        <text class='red'></text>
+      </view>
+      <view class="carts-list">
+        <view class="carts-item" wx:for="{{item.datas}}" wx:for-item="tabItem" wx:for-index="idx">
+          <!--img-->
+          <view class='carts-img'>
+            <image class="carts-image" src="{{tabItem.pic}}" mode="aspectFill" />
+          </view>
+          <!--文字-->
+          <view class="carts-text df_1n">
+            <text class="carts-title c6">{{tabItem.name}}</text>
+            <view class="carts-subtitle">
+              <text class="carts-price"><text class='font_10'>¥ </text>{{tabItem.price}}
+              <text class='font_11 l_h18'>元/个</text></text>
+              <!--右边-->
+              <view class="title">
+                <view class="stepper">
+                  <!-- 减号 -->
+                  <icon class="iconfont icon-reduce cart-icon" data-index='{{index}}' data-idx='{{idx}}' bindtap="bindMinus"></icon>
+                  <!-- 数值 -->
+                  <input type="number" bindchange="bindManual" value='{{tabItem.num}}' disabled='disabled' />
+                  <!-- 加号 -->
+                  <icon class="iconfont icon-add1 cart-icon" data-index='{{index}}' data-pid='{{tabItem.pid}}' data-idx='{{idx}}' bindtap="bindPlus"></icon>
+                </view>
+              </view>
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+    </view>
+    <view class="carts-list-footer mb5" wx:if="{{carts.length >0}}">
+      <span class="carts-footer-l">
+        <text class="c3 font_12">总计：<text class='c6 font_12'>¥</text>
+        <text class='font_16 c6'>{{total}}</text></text>
+      </span>
+      <view class='stepper1 w50'>
+        <navigator bindtap="removeShopCard" hover-class='none' class='button2 m_r5'>取消订单</navigator>
+        <navigator class='button3' hover-class='none' bindtap="doPay">生成订单</navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="me {{showView?'hide':'show'}}">
+
+    <view class='info_success mb15'>
+      <icon class='iconfont red icon1 icon-success mb15'></icon>
+      <text class='c11 font_24 l_h24'>SUCCESS</text>
+      <text class='c6 font_14 l_h20'>订购成功！</text>
+    </view>
+
+  </view>
+
+
+</view>

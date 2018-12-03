@@ -1,0 +1,190 @@
+<!--pages/user/myorder.wxml-->
+<view class="page">        
+    <view class="swiper-tab">
+      <view class='w50 valin_c'>
+          <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="" bindtap="swichNav">购物车</view></view>
+      <view class='w50 valin_c'>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="" bindtap="swichNav">我的订单</view></view>
+    </view>
+
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 0}}px" bindchange="bindChange">
+    <!-- 购物车 -->
+  <swiper-item> 
+    <view bindtap="onChangeShowState" class="me {{showView?'show':'hide'}}">  
+      <view class="c_t60"></view>  
+      <view class='info_success mb15'>
+        <icon class='iconfont red icon1 icon-information mb15'></icon>
+        <text class='c11 font_24 l_h24'>SORRY</text>
+        <text class='c6 font_14 l_h20'>暂无商品！</text>
+      </view>
+    
+    </view>
+  <view class="me {{showView?'hide':'show'}}">
+    <view class="c_t60"></view>
+    <view>
+      <view class='qbdd bbe'>建材批发有限公司</view>
+      <view class="carts-list">
+      <!--勾-->
+          <view class="carts-item">
+              <icon wx:if="{{item.selected}}" type="success_circle" color='#b28147' size="18" bindtap="bindCheckbox" />
+              <icon wx:else type="circle" size="18" bindtap="bindCheckbox" />
+          <!--img-->
+          <view class='carts-img'>
+              <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+          </view>
+          <!--文字-->
+        <view class="carts-text df_1n">
+            <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段800g</text>
+          <view class="carts-subtitle">
+              <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+              <!--右边-->
+              <view class="title">
+                  <view class="stepper">
+                <!-- 减号 -->
+                      <icon class="iconfont icon-reduce cart-icon" bindtap="bindMinus"></icon>
+                <!-- 数值 -->
+                          <input type="number" bindchange="bindManual" />
+                <!-- 加号 -->
+                        <icon class="iconfont icon-add1 cart-icon" bindtap="bindPlus"></icon>
+                  </view> 
+                </view>
+                <icon bindtap="removeShopCard" class="iconfont icon-delete cart-icon"></icon>
+          </view>
+
+          </view>
+
+
+        </view>
+      </view>
+    </view>
+    <view>
+        <view class='qbdd bbe'>建材批发有限公司</view>
+        <view class="carts-list">
+        <!--勾-->
+            <view class="carts-item">
+                <icon wx:if="{{item.selected}}" type="success_circle" color='#b28147' size="18" bindtap="bindCheckbox" />
+                <icon wx:else type="circle" size="18" bindtap="bindCheckbox" />
+            <!--img-->
+            <view class='carts-img'>
+                <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+            </view>
+            <!--文字-->
+          <view class="carts-text df_1n">
+              <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段800g</text>
+            <view class="carts-subtitle">
+                <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+                <!--右边-->
+                <view class="title">
+                    <view class="stepper">
+                  <!-- 减号 -->
+                        <icon class="iconfont icon-reduce cart-icon" bindtap="bindMinus"></icon>
+                  <!-- 数值 -->
+                            <input type="number" bindchange="bindManual" />
+                  <!-- 加号 -->
+                          <icon class="iconfont icon-add1 cart-icon" bindtap="bindPlus"></icon>
+                    </view> 
+                  </view>
+                  <icon bindtap="removeShopCard" class="iconfont icon-delete cart-icon"></icon>
+            </view>
+
+            </view>
+
+
+          </view>
+        </view>
+
+
+        <view class="carts-list">
+        <!--勾-->
+            <view class="carts-item">
+                <icon wx:if="{{item.selected}}" type="success_circle" color='#b28147' size="18" bindtap="bindCheckbox" />
+                <icon wx:else type="circle" size="18" bindtap="bindCheckbox" />
+            <!--img-->
+            <view class='carts-img'>
+                <image class="carts-image" src="/images/list-pro.png" mode="aspectFill"/>
+            </view>
+            <!--文字-->
+          <view class="carts-text df_1n">
+              <text class="carts-title c6">皇家美素力荷兰原装进口奶粉1段800g</text>
+            <view class="carts-subtitle">
+                <text class="carts-price"><text class='font_10'>¥ </text>1100.99<text class='font_11 l_h18'>元/个</text></text>
+                <!--右边-->
+                <view class="title">
+                    <view class="stepper">
+                  <!-- 减号 -->
+                        <icon class="iconfont icon-reduce cart-icon" bindtap="bindMinus"></icon>
+                  <!-- 数值 -->
+                            <input type="number" bindchange="bindManual" />
+                  <!-- 加号 -->
+                          <icon class="iconfont icon-add1 cart-icon" bindtap="bindPlus"></icon>
+                    </view> 
+                  </view>
+                  <icon bindtap="removeShopCard" class="iconfont icon-delete cart-icon"></icon>
+            </view>
+
+            </view>
+
+
+          </view>
+        </view>
+  </view>
+
+
+    <!--底部-->
+    <view class="carts-footer">
+      <view class='carts-footer-l' bindtap="bindSelectAll">
+          <view class='carts-footer-l1'>
+            <icon wx:if="{{selectedAllStatus}}" type="success_circle" color='#b28147' size="18" />
+            <icon wx:else type="circle" size="18" />
+            <text>全选</text>
+          </view> 
+            <view class='carts-footer-l1 m_r5'>
+              <text>合计：</text><text class="red">{{total}}</text>
+            </view>
+      </view>
+      <navigator class='button3 m_r5' url='../user/orderlist' hover-class='none'>立即订购</navigator>
+    </view>
+
+    <view class='c_b60'></view>
+
+
+    </view>
+
+  </swiper-item>
+
+
+  <!-- 我的订单 -->
+  <swiper-item> 
+    <view bindtap="onChangeShowState" class="me {{showView?'show':'hide'}}">  
+      <view class="c_t60"></view>  
+      <view class='info_success mb15'>
+        <icon class='iconfont red icon1 icon-information mb15'></icon>
+        <text class='c11 font_24 l_h24'>SORRY</text>
+        <text class='c6 font_14 l_h20'>暂无订单！</text>
+      </view>
+    
+    </view>
+  <view class="me {{showView?'hide':'show'}}">
+    <view class="c_t60"></view>
+    <navigator hover-class='none' url='orderlist_1' class='mb5'>
+      <view class="qbdd bbe">
+      <span class="carts-footer-l font_12"><text class="c3">订单号：3484759872773</text><text class='c3'>2018-08-21 13:35:00</text></span>
+      </view>
+      <view class='qbdd l_h20'>
+        <view class='carts-footer-l'>建材批发有限公司<text class='red'>未确认</text></view>
+        <view class='carts-footer-l'>建材批发有限公司<text class='red'>未确认</text></view>
+      </view>
+    </navigator>
+    <navigator hover-class='none' url='orderlist_1' class='mb5'>
+      <view class="qbdd bbe">
+      <span class="carts-footer-l font_12"><text class="c3">订单号：3484759872773</text><text class='c3'>2018-08-21 13:35:00</text></span>
+      </view>
+      <view class='qbdd l_h20'>
+        <view class='carts-footer-l'>建材批发有限公司<text class='red'>已确认</text></view>
+      </view> 
+    </navigator>
+ </view>
+  </swiper-item>
+  </swiper>
+</view>
+
