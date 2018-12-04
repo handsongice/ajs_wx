@@ -23,8 +23,12 @@ Page({
     });
     if(options.currentTab == 1) {
       this.loadOrderlist().then(function(res){
-        console.log(res)
         that.initSystemInfo();
+        if (res.heights > that.data.winHeight) {
+          that.setData({
+            winHeight: res.heights
+          });
+        }
       })
     } else {
       this.sum()
@@ -91,6 +95,11 @@ Page({
       if (current == 1) {
         this.loadOrderlist().then(function (res) {
           that.initSystemInfo();
+          if (res.heights > that.data.winHeight) {
+            that.setData({
+              winHeight: res.heights
+            });
+          }
         })
       }
       that.setData({
@@ -320,11 +329,6 @@ Page({
             that.setData({
               list: result.data.orders
             });
-            if (result.data.heights > that.data.winHeight) {
-              that.setData({
-                winHeight: result.data.heights
-              });
-            }
             resolve(result.data);
           } else {
             wx.showModal({
