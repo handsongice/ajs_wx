@@ -66,6 +66,7 @@ Page({
       url: app.globalData.href + '/api/index/show_goods_type',
       data: {
         app: 'customer_app',
+        type: 1
       },
       header: {
         'content-type': 'application/json' // 默认值

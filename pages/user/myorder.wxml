@@ -94,7 +94,7 @@
       </view>
       <view class="me show" wx:if="{{list.length>0}}">
         <view class="c_t60"></view>
-        <navigator hover-class='none' url='orderlist_1' class='mb5' wx:for="{{list}}" wx:for-index="index">
+        <navigator hover-class='none' url='orderlist_1?id={{item.id}}' class='mb5' wx:for="{{list}}" wx:for-index="index">
           <view class="qbdd bbe">
             <span class="carts-footer-l font_12">
               <text class="c3">订单号：{{item.order_sn}}</text>

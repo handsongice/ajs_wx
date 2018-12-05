@@ -40,14 +40,14 @@
     <view class='index_title'><icon class='iconfont icon-good'></icon>工程共建人</view>
   </view>
   <view class='list_pro' wx:for="{{gc}}" wx:for-index="index">
-    <navigator class='index_pre' hover-class='none' url='../product/detail?currentTab=0'>
+    <navigator class='index_pre' hover-class='none' url='../person/person_e?id={{item.id}}&currentTab=0'>
       <view class='index_pre_img bbe'>
         <image src='{{item.pic}}' mode="aspectFill"></image>
         <view class='index_txt2'><text class='c6 font_16 l_h20'>{{item.name}}</text><text class='red font_12 l_h18'>{{item.type_name}}</text></view>
       </view>
     </navigator>
     <view class='index_pre_pro mb5'>
-      <navigator wx:for="{{item.case}}" wx:for-index="idx" wx:for-item="navItem" class='pre_pro_img' url='../person/person_e_show?id={{navItem.id}}'><image src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
+      <navigator wx:for="{{item.goods}}" wx:for-index="idx" wx:for-item="navItem" class='pre_pro_img' url='../person/person_b_show?id={{navItem.id}}'><image src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
     </view>
 
   </view>
