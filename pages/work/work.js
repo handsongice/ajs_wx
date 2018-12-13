@@ -1,5 +1,5 @@
-// pages/work/work.js
-
+// pages/group/add.js
+var app = getApp();
 Page({
   data: {
 
@@ -9,9 +9,7 @@ Page({
     tempFilePaths: {},//本地图片地址对象
     canChoose: true,//是否可选图片
     imgString: '',//图片拼接后的字符串
-
     showView: true,
-
     animationData: "",
     showModalStatus: false,
     imageHeight: 0,
@@ -58,7 +56,7 @@ Page({
   },
   noChoose: function () {
     var that = this;
-    that.alert("最多只能上传8张哦~")
+    that.alert("最多只能上传9张哦~")
   },
   // 选取图片
   chooseWxImage: function (type) {
@@ -73,34 +71,57 @@ Page({
         var tempFilePaths = that.data.tempFilePaths;
         var imgs = that.data.imgs;
         console.log(res.tempFilePaths);
+        tempFilePaths[res.tempFilePaths[i]] = '';
         for (var i = 0; i < res.tempFilePaths.length; i++) {
-          tempFilePaths[res.tempFilePaths[i]] = '';
-          console.log(res.tempFilePaths[i])
-          imgs.push(res.tempFilePaths[i]);
+          wx.uploadFile({
+            url: app.globalData.href + '/api/index/img_upload',
+            filePath: res.tempFilePaths[i],
+            name: 'file',
+            formData: {
+              'app': 'customer_app',
+            },
+            complete: function () {
+            },
+            success(ret) {
+              if (ret && ret.statusCode == '200') {
+                var _data = JSON.parse(ret.data)
+                imgs.push(_data.data);
+                if (imgs.length > 9) {
+                  for (var i = 0; i < 9; i++) {
+                    imgsLimit.push(imgs[i]);
+                  }
+                  that.setData({
+                    imgs: imgsLimit,
+                    tempFilePaths: tempFilePaths,
+                  });
+                } else {
+                  that.setData({
+                    imgs: imgs,
+                    tempFilePaths: tempFilePaths,
+                  });
+                }
+                if (imgsPaths.length >= 9) {
+                  that.setData({
+                    canChoose: false,
+                  });
+                } else {
+                  that.setData({
+                    canChoose: true,
+                  });
+                };
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  showCancel: false,
+                  content: ret.msg,
+                  success: function () {
+                  }
+                })
+              }
+            }
+          })
         };
-        if (imgs.length > 8) {
-          for (var i = 0; i < 8; i++) {
-            imgsLimit.push(imgs[i]);
-          }
-          that.setData({
-            imgs: imgsLimit,
-            tempFilePaths: tempFilePaths,
-          });
-        } else {
-          that.setData({
-            imgs: imgs,
-            tempFilePaths: tempFilePaths,
-          });
-        }
-        if (imgsPaths.length >= 8) {
-          that.setData({
-            canChoose: false,
-          });
-        } else {
-          that.setData({
-            canChoose: true,
-          });
-        };
+
       },
     })
   },
@@ -115,7 +136,6 @@ Page({
         i--;
       }
     }
-
 
     that.setData({
       imgs: imgs,
@@ -199,11 +219,6 @@ Page({
   },
   onShow: function () {
     let that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        animationShowHeight = res.windowHeight;
-      }
-    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -213,21 +228,73 @@ Page({
     showView: (options.showView == "true" ? true : false);
   },
 
-
-
   onChangeShowState: function () {
     var that = this;
-    that.setData({
-      showView: (!that.data.showView)
-    })
-    setTimeout(function () {
-      wx.redirectTo({
-        url: '../user/mywork'
+    let imgs = this.data.imgs
+    var customer = wx.getStorageSync('customer')
+    if (!customer) {
+      wx.navigateTo({
+        url: '../login/login_d'
       })
-    }, 2000)
+    }
+    if (!that.data.txtContent) {
+      this.changeMaskVisible()
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.globalData.href + '/api/index/create_post',
+      method: 'POST',
+      data: {
+        app: 'customer_app',
+        customer_id: customer.id,
+        title: that.data.txtContent,
+        _type: 2,
+        imgs: imgs
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var result = res.data;
+        if (result && result.code == '200') {
+          if (!result.data) {
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              content: '发布失败',
+            })
+            return false
+          }
+          that.setData({
+            showView: (!that.data.showView)
+          })
+          setTimeout(function () {
+            wx.navigateBack({})
+          }, 1000)
+        } else {
+          wx.showModal({
+            title: '提示',
+            showCancel: false,
+            content: result.msg,
+            success: function () {
+            }
+          })
+        }
+      },
+      complete: function () {
+        wx.hideLoading()
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
   },
-
-
-
 
 })

@@ -1,189 +1,115 @@
 <!--pages/user/myfav.wxml-->
-<view class="page">        
+<view class="page">
 
-    <view class="swiper-tab">
-      <view class='w33 valin_c'>
-          <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="" bindtap="swichNav">圈子</view></view>
-      <view class='w33 valin_c'>
-        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="" bindtap="swichNav">作品</view></view>
-      <view class='w33 valin_c'>
-        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" data-otype="" bindtap="swichNav">其他</view></view>
+  <view class="swiper-tab">
+    <view class='w33 valin_c'>
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" data-otype="" bindtap="swichNav">圈子</view>
     </view>
+    <view class='w33 valin_c'>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" data-otype="" bindtap="swichNav">作品</view>
+    </view>
+    <view class='w33 valin_c'>
+      <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" data-otype="" bindtap="swichNav">其他</view>
+    </view>
+  </view>
 
+  <view class="c_t60"></view>
 
-<view class="c_t60"></view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 0}}px" bindchange="bindChange">
-  <!-- 圈子 -->
-  <swiper-item> 
-  
-    <view class='list_pro'>
-        <view class='group'>
+      <view class='list_pro' wx:if="{{list1.length>0}}">
+        <view class='group' wx:for="{{list1}}">
           <view class='group-head'>
             <view class='group-avatar'>
-            <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image></view>
+              <image src="{{item.customer_pic}}" class='group-avatar-bg' mode='aspectFill'></image>
+            </view>
           </view>
           <view class='group_r'>
             <view class='group_list'>
-              <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=0'>里斯本</navigator>
-              <navigator hover-class='none' url='../group/groupdetail' class='group_txt'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
-              <view class='group_img'>
-                <navigator url='../group/groupshow' class='group_img_list'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-                <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-        
+              <navigator class='group_name' hover-class='none' url='../person/personshow?id={{item.customer_id}}&currentTab=0'>{{item.customer_name}}</navigator>
+              <navigator hover-class='none' url='../group/groupdetail?id={{item.id}}' class='group_txt'>{{item.title}}</navigator>
+              <view class='group_img' wx:if='{{item.pics && item.pics.length>0}}'>
+                <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" url='../group/groupshow?id={{item.id}}&currentTab={{idx}}' class='group_img_list'>
+                  <image wx:if="{{navItem.pic}}" src='{{navItem.pic}}' mode="aspectFill"></image>
+                </navigator>
               </view>
 
-              <view class='group_txt_dfs group_date_end'><text>今天 1小时前</text><navigator class='red group_txt_df' url='../group/groupdetail' hover-class='none'>10<icon class='iconfont icon3 icon-comments ml5'></icon></navigator></view>
+              <view class='group_txt_dfs group_date_end'>
+                <text>{{item.create_time}}</text>
+                <navigator class='red group_txt_df' url='../group/groupdetail?id={{item.id}}' hover-class='none'>{{item.adds}}
+                  <icon class='iconfont icon3 icon-comments ml5'></icon>
+                </navigator>
+              </view>
             </view>
           </view>
         </view>
-    <view class='group'>
-      <view class='group-head'>
-        <view class='group-avatar'>
-        <image src="/images/per0.png" class='group-avatar-bg' mode='aspectFill'></image></view>
       </view>
-      <view class='group_r'>
-        <view class='group_list'>
-          <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=0'>里斯本</navigator>          
-          
-          
-        <navigator hover-class='none' url='../group/groupdetail' class='group_txt'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
-        <view class='group_img'>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>    
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>                      
+
+      <view class='list_pro' wx:if="{{list2.length>0}}" wx:for="{{list2}}">
+        <view class='work'>
+          <view class='work-head'>
+            <view class='group-avatar'>
+              <image src="{{item.customer_pic}}" class='group-avatar-bg' mode='aspectFill'></image>
+            </view>
           </view>
-
-          <view class='group_txt_dfs group_date_end'><text>今天 1小时前</text><navigator class='red group_txt_df' url='../group/groupdetail' hover-class='none'>10<icon class='iconfont icon3 icon-comments ml5'></icon></navigator></view>       
-
+          <view class='group_r'>
+            <view class='work_list' url='' hover-class='none'>
+              <navigator class='group_name' hover-class='none' url='../person/personshow?id={{item.customer_id}}&currentTab=1'>{{item.customer_name}}</navigator>
+            </view>
+          </view>
         </view>
-
-
-      </view>
-      
-    </view>
-
-    </view>
-
-
-    </swiper-item>
-
-
-  <!-- 作品 -->
-  <swiper-item> 
-
-    <view class='list_pro'>
-      <view class='work'>
-          <view class='work-head'>
-            <view class='group-avatar'>
-            <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image></view>
-          </view>
-          <view class='group_r'>
-            <view class='work_list' url='' hover-class='none'>
-              <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=1'>里斯本</navigator>
-
-            </view>
-
-          </view>
-          
-      </view>
-      <view class='list_pro bte'>
-            <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
-              <view class='index_pre_img'>
-                <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text></view>
+        <view class='list_pro bte'>
+          <navigator class='index_pre' hover-class='none' url='../work/workdetail?id={{item.id}}'>
+            <view class='index_pre_img'>
+              <view class='person_txt3 font_12'>
+                <text class='c3'>{{item.title}}</text>
               </view>
+            </view>
+          </navigator>
+          <view class='work_pre_pro' wx:if='{{item.pics && item.pics.length>0}}'>
+            <navigator class='pre_pro_img' wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" url='../work/workshow?id={{item.id}}&currentTab={{idx}}'>
+              <image wx:if="{{navItem.pic}}" src='{{navItem.pic}}' mode="aspectFill"></image>
             </navigator>
-            <view class='work_pre_pro'>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>          
-            </view>
-              <view class='group_txt_dfs work_date_end mb5'><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text><navigator class='red group_txt_df' hover-class='none' url="../work/workdetail">10<icon class='iconfont icon3 icon-comments ml10'></icon></navigator></view>
-      </view>
-
-
-
-
-      <view class='work'>
-          <view class='work-head'>
-            <view class='group-avatar'>
-            <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image></view>
           </view>
-          <view class='group_r'>
-            <view class='work_list' url='' hover-class='none'>
-              <navigator class='group_name' hover-class='none' url='../person/personshow?currentTab=1'>里斯本</navigator>
-
-            </view>
-
-          </view>
-          
-      </view>
-      <view class='list_pro bte'>
-            <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
-              <view class='index_pre_img'>
-                <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text></view>
-              </view>
+          <view class='group_txt_dfs work_date_end mb5'>
+            <text class='c3'>{{item.create_time}}<text class='c3 ml5'>发布</text></text>
+            <navigator class='red group_txt_df' hover-class='none' url="../work/workdetail?id={{item.id}}">{{item.adds}}
+              <icon class='iconfont icon3 icon-comments ml10'></icon>
             </navigator>
-            <view class='work_pre_pro'>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-              <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>          
-            </view>
-              <view class='group_txt_dfs work_date_end mb5'><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text><navigator class='red group_txt_df' hover-class='none' url="../work/workdetail">10<icon class='iconfont icon3 icon-comments ml10'></icon></navigator></view>
+          </view>
+        </view>
       </view>
 
 
-
-
-
-    </view>
-
-    </swiper-item>
-  <!-- 其他 -->
-  <swiper-item>
-
-    <view class='list_pro'>
+      <view class='list_pro' wx:if="{{list3.length>0}}">
         <navigator class='news_pre' hover-class='none' url='../person/personshow?currentTab=0'>
           <view class='news_pre_img'>
             <span class="news_tag"></span>
-            <view class='index_fl_3'><image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image></view>    
+            <view class='index_fl_3'>
+              <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+            </view>
             <view class='news_txt2'>
-              <view class='l_h22 news_pro_name_a w100'><text class='c6 font_16'>工程建设有限公司</text></view>
+              <view class='l_h22 news_pro_name_a w100'>
+                <text class='c6 font_16'>工程建设有限公司</text>
+              </view>
               <text class='red news_txt1 font_12 l_h18'>工程共建人</text>
               <text class='c3 news_txt1 font_12 l_h18'>项目：100</text>
             </view>
           </view>
-        </navigator>    
+        </navigator>
 
         <navigator class='news_pre' hover-class='none' url='../person/personshow?currentTab=0'>
           <view class='news_pre_img'>
-            <view class='index_fl_3'><image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image></view>    
+            <view class='index_fl_3'>
+              <image src='/images/icons/btn-tabs_08.png' mode="aspectFill"></image>
+            </view>
             <view class='news_txt2'>
-              <view class='l_h22 news_pro_name_a w100'><text class='c6 font_16'>工程建设有限公司</text></view>
+              <view class='l_h22 news_pro_name_a w100'>
+                <text class='c6 font_16'>工程建设有限公司</text>
+              </view>
               <text class='red news_txt1 font_12 l_h18'>工程共建人</text>
               <text class='c3 news_txt1 font_12 l_h18'>项目：100</text>
             </view>
           </view>
-        </navigator>    
-    </view>
+        </navigator>
+      </view>
 
-    </swiper-item>
-  </swiper>
 </view>
-
-

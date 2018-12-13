@@ -1,25 +1,19 @@
-<!--pages/work/work.wxml-->
+<!--pages/group/add.wxml-->
 <view class='page'>
 <!--弹出窗-->
 <view animation="{{animationData}}" class=" buydes-dialog-container" wx:if="{{showMask}}" bindtap="changeMaskVisible">
        <view class="buydes-dialog-bg">
           <view class='buydes-b'>
             <icon class='iconfont icon-warning icon1 c6'></icon>
-            <text class='c6 ml15 mt10'>您输入的内容有误，</text><text class='c6 ml15'>请重新输入！</text>
+            <text class='c6 ml15 mt10'>请输入要发布的信息！</text>
           </view>
-<!--
-          <view class='buydes-b1'>
-              <button bindtap="hideModal" class="buydes-btn1" >继续推荐</button>
-              <button bindtap="hideModal" class="buydes-btn2" >返回</button>          
-          </view>
--->  
        </view>
 </view>
 
 
 <view class="me {{showView?'show':'hide'}}">
   <view class='add_group'>
-    <textarea bindtap="changeMaskVisible" placeholder='您这一刻的想法...' placeholder-class='add_group_p' id="text-area" value="{{txtContent}}" bindinput='txtInput' bindlinechange="textAreaLineChange" wx:if="{{!showMask}}"></textarea>
+    <textarea placeholder='您这一刻的想法...' placeholder-class='add_group_p' id="text-area" value="{{txtContent}}" bindinput='txtInput' bindlinechange="textAreaLineChange" wx:if="{{!showMask}}"></textarea>
     <view class='m_textarea'  wx:else>
       <rich-text nodes="{{txtRealContent}}"></rich-text>
     </view>
@@ -27,8 +21,8 @@
   </view>
 
   <view class='add_group_bg'>
-    <text class='add_txt_1'>添加作品图片</text>
-    <text class='add_txt'>0/8</text>
+    <text class='add_txt_1'>添加图片（选填）</text>
+    <text class='add_txt'>0/9</text>
   <!-- 图片上传 -->
   <view class='uploadimg'>
     <view class='uploadimgBox imgbtn'>
@@ -49,7 +43,7 @@
   </view>
   <!--底部-->
   <view class="add-footer"> 
-    <navigator class='button3' url='' bindtap="onChangeShowState" hover-class='none'>发布</navigator>
+    <view class='button3' url='' bindtap="onChangeShowState" hover-class='none'>发布</view>
   </view> 
 
  </view>

@@ -24,22 +24,22 @@
     </view>
 
     <view class="sc df tc bbe mt5">    
-    <navigator class="df_1 bre" url="../refund/refund?currentTab=0" hover-class="none" >
+    <navigator class="df_1 bre" url="mygroup" hover-class="none" >
           <view><icon class='iconfont icon-comments icon1' ></icon></view>
           <text class="font_12">我的圈子</text>
        </navigator>
 
-    <navigator class="df_1 bre" url="../rituall/rituall?currentTab=0" hover-class="none" >
+    <navigator class="df_1 bre" url="mywork" hover-class="none" >
           <view><icon class='iconfont icon-pic icon1' ></icon></view>
         <text class="font_12">我的作品</text>
       </navigator>
 
-    <navigator class="df_1 bre" url="leader" hover-class="none" >
+    <navigator class="df_1 bre" url="myfav?currentTab=0" hover-class="none" >
           <view><icon class='iconfont icon-favorite icon1' ></icon></view>
         <text class="font_12">我的收藏</text>
       </navigator>
 
-      <navigator class="df_1" url="../about/about" hover-class="none" >
+      <navigator class="df_1" url="myfocus?currentTab=0" hover-class="none" >
           <view><icon class='iconfont icon-supplier-features icon1' ></icon></view>
           <text class="font_12">我的关注</text>
       </navigator>

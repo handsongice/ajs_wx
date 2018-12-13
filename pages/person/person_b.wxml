@@ -69,9 +69,9 @@
 
   <view class="pro-footer">
     <button class='pro-footer-l' hover-class='none' url='' bindtap="onChangeShowState">
-      <icon class="iconfont button1 icon-supplier-features-filling {{showView?'hide':'show'}}"></icon>
-      <icon class="iconfont button1 icon-supplier-features {{showView?'show':'hide'}}"></icon>
-      <text class='button2'>{{showView?'关注':'取消关注'}}</text>
+      <icon class="iconfont button1 icon-supplier-features-filling {{showView?'show':'hide'}}"></icon>
+      <icon class="iconfont button1 icon-supplier-features {{showView?'hide':'show'}}"></icon>
+      <text class='button2'>{{showView?'取消关注':'关注'}}</text>
     </button>
     <view class='stepper1 w50'>
       <navigator class='button3 m_r5' url='../user/newsshow?id={{info.id}}' hover-class='none'>发消息</navigator>

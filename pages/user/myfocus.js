@@ -1,4 +1,4 @@
-// pages/user/myfocus.js
+// pages/user/myfav.js
 var app = getApp();
 var common = require("../../utils/common.js");
 Page({
@@ -7,119 +7,70 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
-    page: 0,
-    refundpage: 0,
-    orderList0: [],
-    orderList1: [],
-    orderList2: [],
-    orderList3: [],
-    orderList4: [],
-    movies: [
-      { url: '/images/list-pro.png' },
-      { url: '/images/list-pro.png' },
-      { url: '/images/list-pro.png' }
-    ]
+    customerId: '',
+    list1: [],
+    list2: [],
+    list3: [],
   },
   onLoad: function (options) {
     this.initSystemInfo();
+    var customer = wx.getStorageSync('customer');
     this.setData({
       currentTab: parseInt(options.currentTab),
-      isStatus: options.otype
+      customerId: customer.id
     });
-    if (this.data.currentTab == 4) {
-      this.loadReturnOrderList();
-    } else {
-      this.loadOrderList();
+    if (this.data.currentTab == 0) {
+      this.loadPostList(1);
+    } else if (this.data.currentTab == 1) {
+      this.loadPostList(2);
+    } else if (this.data.currentTab == 2) {
+      this.loadPostList(3);
     }
   },
-  getOrderStatus: function () {
-    return this.data.currentTab == 0 ? 1 : this.data.currentTab == 2 ? 2 : this.data.currentTab == 3 ? 3 : 0;
-  },
 
-
-  loadOrderList: function () {
-    var that = this;
+  loadPostList: function (t) {
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Order/index',
-      method: 'post',
+      url: app.globalData.href + '/api/index/like_customer_list',
       data: {
-        uid: app.d.userId,
-        order_type: that.data.isStatus,
-        page: that.data.page,
+        app: 'customer_app',
+        customer_id: that.data.customerId,
+        type: t,
       },
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        //--init data        
-        var status = res.data.status;
-        var list = res.data.ord;
-        switch (that.data.currentTab) {
-          case 0:
-            that.setData({
-              orderList0: list,
-            });
-            break;
-          case 1:
-            that.setData({
-              orderList1: list,
-            });
-            break;
-          case 2:
-            that.setData({
-              orderList2: list,
-            });
-            break;
-          case 3:
-            that.setData({
-              orderList3: list,
-            });
-            break;
-          case 4:
-            that.setData({
-              orderList4: list,
-            });
-            break;
-        }
-      },
-      fail: function () {
-        // fail
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      }
-    });
-  },
-
-  loadReturnOrderList: function () {
-    var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Order/order_refund',
-      method: 'post',
-      data: {
-        uid: app.d.userId,
-        page: that.data.refundpage,
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data.ord;
-        var status = res.data.status;
-        if (status == 1) {
-          that.setData({
-            orderList4: that.data.orderList4.concat(data),
-          });
+        var result = res.data;
+        if (result && result.code == '200') {
+          if (result.data) {
+            if (t == 1) {
+              that.setData({
+                list1: result.data,
+              })
+            } else if (t == 2) {
+              that.setData({
+                list2: result.data,
+              })
+            } else if (t == 3) {
+              that.setData({
+                list3: result.data,
+              })
+            }
+          }
         } else {
           wx.showToast({
-            title: res.data.err,
+            title: '加载数据失败！',
             duration: 2000
           });
         }
       },
+      complete: function () {
+        wx.hideLoading()
+      },
       fail: function () {
         // fail
         wx.showToast({
@@ -130,8 +81,7 @@ Page({
     });
   },
 
-  // returnProduct:function(){
-  // },
+
   initSystemInfo: function () {
     var that = this;
 
@@ -156,26 +106,34 @@ Page({
       var current = e.target.dataset.current;
       that.setData({
         currentTab: parseInt(current),
-        isStatus: e.target.dataset.otype,
       });
 
       //没有数据就进行加载
       switch (that.data.currentTab) {
         case 0:
-          !that.data.orderList0.length && that.loadOrderList();
+          that.setData({
+            list1: [],
+            list2: [],
+            list3: [],
+          })
+          that.loadPostList(1);
           break;
         case 1:
-          !that.data.orderList1.length && that.loadOrderList();
+          that.setData({
+            list1: [],
+            list2: [],
+            list3: [],
+          })
+          that.loadPostList(2);
           break;
         case 2:
-          !that.data.orderList2.length && that.loadOrderList();
-          break;
-        case 3:
-          !that.data.orderList3.length && that.loadOrderList();
-          break;
-        case 4:
-          that.data.orderList4.length = 0;
-          that.loadReturnOrderList();
+          that.setData({
+            list1: [],
+            list2: [],
+            list3: [],
+          })
+          that.loadPostList(3);
+          //!that.data.list3.length && that.loadOrderList();
           break;
       }
     };

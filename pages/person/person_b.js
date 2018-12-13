@@ -16,7 +16,7 @@ Page({
     navScrollLeft: 0,
     carNum:0,
     key: '',
-    showView: true
+    showView: false
   },
   //事件处理函数
   onLoad: function (options) {
@@ -203,6 +203,56 @@ Page({
   },
   onChangeShowState: function () {
     var that = this;
+    var customer = wx.getStorageSync('customer')
+    if (!customer) {
+      wx.navigateTo({
+        url: '../login/login_d'
+      })
+    }
+    if (that.data.customerId == customer.id) {
+      wx.showToast({
+        title: '不能关注自己！',
+        duration: 2000
+      });
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.globalData.href + '/api/index/update_customer_like',
+      data: {
+        app: 'customer_app',
+        fromid: customer.id,
+        toid: that.data.customerId,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var result = res.data;
+        if (result && result.code == '200') {
+          that.setData({
+            showView: result.data
+          })
+        } else {
+          wx.showToast({
+            title: '操作失败！',
+            duration: 2000
+          });
+        }
+      },
+      complete: function () {
+        wx.hideLoading()
+      },
+      fail: function () {
+        // fail
+        wx.showToast({
+          title: '网络异常！',
+          duration: 2000
+        });
+      }
+    });
     that.setData({
       showView: (!that.data.showView)
     })

@@ -1,16 +1,16 @@
 <!--pages/work/workshow.wxml-->
 <view class="page">
-  <swiper class="swiper" indicator-dots="true" interval="5000" duration="500" indicator-color='rgba(170,170,170,0.5)' indicator-active-color='#b28147'>  
-      <block wx:for="{{movies}}" wx:for-index="index">  
+  <swiper class="swiper" indicator-dots="true" interval="5000" duration="500" current="{{currentTab}}" indicator-color='rgba(170,170,170,0.5)' indicator-active-color='#b28147'>  
+      <block wx:for="{{info.pics}}" wx:for-index="index">  
         <swiper-item class='groupshow_footer_l'>  
-          <image src="{{item.url}}" class="slide-image" mode="aspectFit"/>  
+          <image src="{{item.pic}}" class="slide-image" mode="aspectFit"/>  
         </swiper-item>  
       </block>  
   </swiper>                 
   <view class='bx10'></view>
 
   <view class='groupshow_footer'>
-    <text class='groupshow_footer_txt font_12'>最新室内洗卫装修设计</text><navigator class='white groupshow_footer_l font_12 ml10' url='workdetail' hover-class='none'>10<icon class='iconfont icon3 icon-comments ml5'></icon></navigator>
+    <text class='groupshow_footer_txt font_12'>{{info.title}}</text><navigator class='white groupshow_footer_l font_12 ml10' url='workdetail?id={{info.id}}' hover-class='none'>{{info.adds}}<icon class='iconfont icon3 icon-comments ml5'></icon></navigator>
   </view>
 </view>
 

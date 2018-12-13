@@ -3,7 +3,7 @@
   <view class='group'>
     <view class='group-head'>
       <view class='group-avatar'>
-        <image src="/images/per1.png" class='group-avatar-bg' mode='aspectFill'></image>
+        <image src="{{info.customer_pic}}" class='group-avatar-bg' mode='aspectFill'></image>
       </view>
     </view>
     <view class='group_r'>
@@ -11,7 +11,7 @@
         <navigator class='group_name' hover-class='none' url='../person/personshow?id={{info.customer_id}}&currentTab=0'>{{info.customer_name}}</navigator>
         <navigator hover-class='none' url='' class='group_txt_1'>{{info.title}}</navigator>
         <view class='group_img' wx:if='{{info.pics}}'>
-          <navigator wx:for="{{info.pics}}" url='groupshow' class='group_img_list'>
+          <navigator wx:for="{{info.pics}}" wx:for-index="idx" url='groupshow?id={{info.id}}&currentTab={{idx}}' class='group_img_list'>
             <image src='{{item.pic}}' mode="aspectFill"></image>
           </navigator>
         </view>

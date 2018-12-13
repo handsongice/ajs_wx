@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info:{}
+    info:{},
+    msgCount:0
   },
 
   /**
@@ -35,6 +36,27 @@ Page({
     this.setData({
       info: customer
     })
+  },
+
+  showMsgCount: function (){
+    wx.request({
+      url: app.globalData.href + '/api/index/show_msg_count',
+      data: {
+        app: 'customer_app',
+        my: that.data.info.code,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var result = res.data;
+        if (result && result.code == '200') {
+          that.setData({
+            msgCount: result.data,
+          })
+        }
+      }
+    });
   },
 
   /**

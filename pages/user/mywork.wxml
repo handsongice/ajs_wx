@@ -1,6 +1,23 @@
 <!--pages/user/my work.wxml-->
 <view class='page'>
-  <view bindtap="onChangeShowState" class="me {{showView?'show':'hide'}}">
+
+  <!-- 作品 -->
+  <view class="me show">
+      <view class='list_pro' wx:for="{{list}}" wx:for-index="index">
+        <navigator class='index_pre' hover-class='none' url='../work/workdetail?id={{item.id}}'>
+          <view class='index_pre_img bbe'>
+            <view class='person_txt3 font_12'><text class='c3'>{{item.title}}</text><text class='c3'>{{item.m}}月{{item.d}}日<text class='c3 ml5'>发布</text></text></view>
+          </view>
+        </navigator>
+        <view class='index_pre_pro bbe'>
+          <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" class='pre_pro_img' url='../work/workshow?id={{item.id}}&currentTab={{idx}}'><image src='{{navItem.pic}}' mode="aspectFill"></image></navigator>       
+        </view>
+        <view class='group_txt_dfs work_date_end mb5'><text></text><navigator class='c6 group_txt_df' hover-class='none' data-pid='{{item.id}}' bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view> 
+      </view>
+      <view class="c_b60"></view>
+  </view>
+
+  <view class="me show" wx:if="{{list.length<=0}}">
   
     <view class='info_success mb15'>
       <icon class='iconfont red icon1 icon-information mb15'></icon>
@@ -9,47 +26,8 @@
     </view>
   
   </view>
-
-  <!-- 作品 -->
-  <view class="me  {{showView?'hide':'show'}}">
-      <view class='list_pro'>
-        <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
-          <view class='index_pre_img bbe'>
-            <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text></view>
-          </view>
-        </navigator>
-        <view class='index_pre_pro bbe'>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>          
-        </view>
-        <view class='group_txt_dfs work_date_end mb5'><text></text><navigator class='c6 group_txt_df' hover-class='none' bindtap="onChangeShowState" bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view> 
-      </view>
-      <view class='list_pro'>
-        <navigator class='index_pre' hover-class='none' url='../work/workdetail'>
-          <view class='index_pre_img bbe'>
-            <view class='person_txt3 font_12'><text class='c3'>最新室内洗卫装修设计</text><text class='c3'>9月16日<text class='c3 ml5'>发布</text></text></view>
-          </view>
-        </navigator>
-        <view class='index_pre_pro bbe'>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-          <navigator class='pre_pro_img' url='../work/workshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-        </view>
-        <view class='group_txt_dfs work_date_end mb5'><text></text><navigator class='c6 group_txt_df' hover-class='none' bindtap="onChangeShowState" bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view>  
-      </view>
-
-
-      <view class="c_b60"></view>
-  </view>
   <!--底部-->
   <view class="pro-footer"> 
     <navigator class='button3' url='../work/work' hover-class='none'>发布</navigator>
-        
   </view>
 </view>

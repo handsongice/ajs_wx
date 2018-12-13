@@ -7,119 +7,80 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    isStatus: 'pay',//10待付款，20待发货，30待收货 40、50已完成
-    page: 0,
-    refundpage: 0,
-    orderList0: [],
-    orderList1: [],
-    orderList2: [],
-    orderList3: [],
-    orderList4: [],
-    movies: [
-      { url: '/images/list-pro.png' },
-      { url: '/images/list-pro.png' },
-      { url: '/images/list-pro.png' }
-    ]
+    hasMoreData: true,
+    pageSize: 5,
+    page: 1,
+    list: [],
   },
   onLoad: function (options) {
     this.initSystemInfo();
     this.setData({
       currentTab: parseInt(options.currentTab),
-      isStatus: options.otype
     });
-    if (this.data.currentTab == 4) {
-      this.loadReturnOrderList();
-    } else {
-      this.loadOrderList();
-    }
+    this.loadList();
   },
   getOrderStatus: function () {
     return this.data.currentTab == 0 ? 1 : this.data.currentTab == 2 ? 2 : this.data.currentTab == 3 ? 3 : 0;
   },
 
-
-  loadOrderList: function () {
+  loadList: function () {
     var that = this;
+    let _type = that.data.currentTab + 1
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
-      url: app.d.ceshiUrl + '/Api/Order/index',
-      method: 'post',
+      url: app.globalData.href + '/api/index/show_post_list',
       data: {
-        uid: app.d.userId,
-        order_type: that.data.isStatus,
+        app: 'customer_app',
         page: that.data.page,
+        pageSize: that.data.pageSize,
+        type: _type,
       },
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        //--init data        
-        var status = res.data.status;
-        var list = res.data.ord;
-        switch (that.data.currentTab) {
-          case 0:
+        var result = res.data;
+        if (result && result.code == '200') {
+          if (result.data) {
+            var _n = 0;
+            for (let i = 0; i < result.data.length; i++) {
+              if (result.data[i].pics) {
+                _n++
+              }
+            }
+            var _h = that.data.winHeight + 30 * _n
             that.setData({
-              orderList0: list,
-            });
-            break;
-          case 1:
+              winHeight: _h
+            })
+            if (result.data.length < that.data.pageSize) {
+              that.setData({
+                list: that.data.list.concat(result.data),
+                hasMoreData: false
+              })
+            } else {
+              that.setData({
+                list: that.data.list.concat(result.data),
+                hasMoreData: true,
+                page: that.data.page + 1
+              })
+            }
+          } else {
             that.setData({
-              orderList1: list,
-            });
-            break;
-          case 2:
-            that.setData({
-              orderList2: list,
-            });
-            break;
-          case 3:
-            that.setData({
-              orderList3: list,
-            });
-            break;
-          case 4:
-            that.setData({
-              orderList4: list,
-            });
-            break;
-        }
-      },
-      fail: function () {
-        // fail
-        wx.showToast({
-          title: '网络异常！',
-          duration: 2000
-        });
-      }
-    });
-  },
-
-  loadReturnOrderList: function () {
-    var that = this;
-    wx.request({
-      url: app.d.ceshiUrl + '/Api/Order/order_refund',
-      method: 'post',
-      data: {
-        uid: app.d.userId,
-        page: that.data.refundpage,
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        //--init data        
-        var data = res.data.ord;
-        var status = res.data.status;
-        if (status == 1) {
-          that.setData({
-            orderList4: that.data.orderList4.concat(data),
-          });
+              hasMoreData: false
+            })
+          }
         } else {
           wx.showToast({
-            title: res.data.err,
+            title: '加载数据失败！',
             duration: 2000
           });
         }
       },
+      complete: function () {
+        wx.hideLoading()
+      },
       fail: function () {
         // fail
         wx.showToast({
@@ -130,8 +91,7 @@ Page({
     });
   },
 
-  // returnProduct:function(){
-  // },
+
   initSystemInfo: function () {
     var that = this;
 
@@ -144,10 +104,7 @@ Page({
       }
     });
   },
-  bindChange: function (e) {
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
-  },
+
   swichNav: function (e) {
     var that = this;
     if (that.data.currentTab === e.target.dataset.current) {
@@ -156,28 +113,8 @@ Page({
       var current = e.target.dataset.current;
       that.setData({
         currentTab: parseInt(current),
-        isStatus: e.target.dataset.otype,
       });
 
-      //没有数据就进行加载
-      switch (that.data.currentTab) {
-        case 0:
-          !that.data.orderList0.length && that.loadOrderList();
-          break;
-        case 1:
-          !that.data.orderList1.length && that.loadOrderList();
-          break;
-        case 2:
-          !that.data.orderList2.length && that.loadOrderList();
-          break;
-        case 3:
-          !that.data.orderList3.length && that.loadOrderList();
-          break;
-        case 4:
-          that.data.orderList4.length = 0;
-          that.loadReturnOrderList();
-          break;
-      }
     };
   },
 

@@ -38,7 +38,7 @@
         <view class='group_list' >
           <navigator class='group_txt' url='../group/groupdetail?id={{item.id}}' hover-class='none'>{{item.title}}</navigator>
           <view class='group_img' wx:if='{{item.pics && item.pics.length>0}}'>
-            <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" class='group_img_list' url='../group/groupshow'><image wx:if="{{navItem.pic}}" src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
+            <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" class='group_img_list' url='../group/groupshow?id={{item.id}}&currentTab={{idx}}'><image wx:if="{{navItem.pic}}" src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
           </view>
         </view>
       </view>

@@ -1,87 +1,36 @@
 <!--pages/user/mygroup.wxml-->
 <view class='page'>
-    <view class='group'>
-      <view class='group_date'>
-        <text class='font_12'>9月</text>
-        <view class='group_txt_df'>
-          <text class='font_20 mr3 font_b'>16</text>
-          <text class='font_12 '>日</text>
-        </view>
+  <view class='group' wx:for="{{list}}" wx:for-index="index">
+    <view class='group_date'>
+      <text class='font_12'>{{item.m}}月</text>
+      <view class='group_txt_df'>
+        <text class='font_20 mr3 font_b'>{{item.d}}</text>
+        <text class='font_12 '>日</text>
       </view>
-      <view class='group_r bbe'>
-        <view class='group_list' >
-          <navigator class='group_txt' url='../group/groupdetail' hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
-          <view class='group_img'>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-    
+    </view>
+    <view class='group_r bbe'>
+      <view class='group_list'>
+        <navigator class='group_txt' url='../group/groupdetail?id={{item.id}}' hover-class='none'>{{item.title}}</navigator>
+        <view class='group_img' wx:if='{{item.pics && item.pics.length>0}}'>
+            <navigator wx:for="{{item.pics}}" wx:for-index="idx" wx:for-item="navItem" class='group_img_list' url='../group/groupshow?id={{item.id}}&currentTab={{idx}}'><image wx:if="{{navItem.pic}}" src='{{navItem.pic}}' mode="aspectFill"></image></navigator>
+        </view>
+        <view class='group_txt_dfs group_date_end'>
+          <text></text>
+          <view class='c6 group_txt_df' hover-class='none' data-pid='{{item.id}}' bindtap="del">删除
+            <icon class='iconfont icon3 icon-delete ml10'></icon>
           </view>
-          <view class='group_txt_dfs group_date_end'><text></text><navigator class='c6 group_txt_df' hover-class='none' bindtap="onChangeShowState" bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view>          
         </view>
-
-
       </view>
-      
+
     </view>
 
+  </view>
 
-    <view class='group bbe'>
-      <view class='group_date'>
-
-      </view>
-      <view class='group_r'>
-        <view class='group_list'>
-          <navigator class='group_txt' url='../group/groupdetail'  hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
-          <view class='group_txt_dfs group_date_end'><text></text><navigator class='c6 group_txt_df' hover-class='none' bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view>          
-        </view>
-
-
-      </view>
-      
-    </view>
-
-
-
-    <view class='group bbe'>
-      <view class='group_date'>
-        <text class='font_12'>2017年</text>
-        <text class='font_12'>9月</text>
-        <view class='group_txt_df'>
-          <text class='font_20 mr3 font_b'>6</text>
-          <text class='font_12 '>日</text>
-        </view>
-      </view>
-      <view class='group_r'>
-        <view class='group_list'>
-          <navigator class='group_txt' url='../group/groupdetail'  hover-class='none'>今天的作品展示，希望大大多发表意见。今天的作品展示，希望大大多发表意见。</navigator>
-          <view class='group_img'>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/index_bg_01.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>    
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>
-            <navigator class='group_img_list' url='../group/groupshow'><image src='/images/pro1.png' mode="aspectFill"></image></navigator>                      
-          </view>
-          <view class='group_txt_dfs group_date_end'><text></text><navigator class='c6 group_txt_df' hover-class='none' bindtap="del">删除<icon class='iconfont icon3 icon-delete ml10'></icon></navigator></view>      
-
-
-        </view>
-
-
-      </view>
-      
-    </view>
-
-
-
-    <view class="c_b60"></view>
+  <view class="c_b60"></view>
 
   <!--底部-->
-<view class="mygroup-footer">
+  <view class="mygroup-footer">
     <navigator class='button3' url='../group/add' hover-class='none'>发布</navigator>
-        
+
   </view>
 </view>
