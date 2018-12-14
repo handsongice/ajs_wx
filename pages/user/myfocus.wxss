@@ -346,6 +346,7 @@ page{
   border-radius: 10px;
   align-items: center;
   flex-shrink: 0;
+  white-space: nowrap;
 
 }
 .focus_txt1{
@@ -362,6 +363,9 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 .news_pre{
   border-bottom: 1px solid #eaeaea;
